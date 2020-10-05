@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com.tools"
+    tools:showIn="navigation view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_Home"
+            android:icon="@drawable/ic_sharp_home_24"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/nav_Diary"
+            android:icon="@drawable/ic_outline_date_range_24"
+            android:title="Diary"/>
+
+        <item
+            android:id="@+id/nav_Goals"
+            android:icon="@drawable/ic_outline_adjust_24"
+            android:title="Goals"/>
+
+        <item
+            android:id="@+id/nav_Progress"
+            android:icon="@drawable/ic_outline_insert_chart_outlined_24"
+            android:title="Progress"/>
+
+        <item
+            android:id="@+id/nav_Weight"
+            android:icon="@drawable/ic_outline_settings_input_svideo_24"
+            android:title="Weight"/>
+
+        <item
+            android:id="@+id/nav_PhotoAlbum"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Photo Album"/>
+
+        <item
+            android:id="@+id/nav_Profile"
+            android:icon="@drawable/ic_outline_assignment_ind_24"
+            android:title="Profile"/>
+
+        <item
+            android:id="@+id/nav_Settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Settings"/>
+
+        <item
+            android:id="@+id/nav_Logout"
+            android:icon="@drawable/ic_baseline_power_settings_new_24"
+            android:title="Logout"/>
+
+    </group>
+
+</menu>

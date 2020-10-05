@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:background="@drawable/navigation"
+    android:gravity="bottom"
+    android:padding="15dp"
+    android:theme="@style/ThemeOverlay.AppCompat">
+
+    <TextView
+        android:id="@+id/tv_MyFitnessLive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/marcellus"
+        android:padding="5dp"
+        android:text="MyFitnessLive"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:gravity="top"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_FullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/marcellus"
+        android:gravity="center"
+        android:text="Charmaine Dobbin"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_EmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/marcellus"
+        android:gravity="center"
+        android:text="19003337@vcconnect.co.za"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp">
+
+    </TextView>
+
+</LinearLayout>
+
