@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity
 
                         else
                         {
-                            Toast.makeText(MainActivity.this, "Invalid credentials entered, no login for you!!!",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "You have entered an invalid email or password. Please re-enter your credentials!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener()

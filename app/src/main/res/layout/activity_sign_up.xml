@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup"
-    android:scaleType="fitXY"
+    android:background="@drawable/signup1"
+    android:scaleType="fitCenter"
     tools:context=".SignUp">
 
     <LinearLayout
@@ -23,13 +23,13 @@
             android:id="@+id/tv_MyFitnessLive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/marcellus"
             android:gravity="center"
             android:text="MyFitnessLive"
             android:textColor="@color/black"
-            android:textSize="40dp"
+            android:textSize="50dp"
             android:textStyle="bold" />
 
         <LinearLayout
