@@ -46,7 +46,6 @@
             android:textColor="@color/black"
             android:textSize="24dp"
             android:textStyle="bold">
-
         </TextView>
 
         <TextView
@@ -88,8 +87,8 @@
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Full Name"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -105,7 +104,8 @@
                 android:hint="Enter your name and surname"
                 android:textColor="@color/black"
                 android:inputType="textPersonName"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
 
             </EditText>
 
@@ -118,8 +118,8 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Gender"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -135,7 +135,8 @@
                 android:hint="Male / Female"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
 
             </EditText>
 
@@ -148,8 +149,8 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Date of Birth"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
             </TextView>
 
             <EditText
@@ -164,7 +165,8 @@
                 android:hint="Select Date of Birth"
                 android:textColor="@color/black"
                 android:inputType="date"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
             </EditText>
 
             <TextView
@@ -176,8 +178,8 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Height"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -193,7 +195,8 @@
                 android:hint="Enter your height"
                 android:textColor="@color/black"
                 android:inputType="number"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
 
             </EditText>
 
@@ -206,8 +209,8 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Starting Weight"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -223,7 +226,8 @@
                 android:hint="Enter your starting weight"
                 android:textColor="@color/black"
                 android:inputType="numberDecimal"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
 
             </EditText>
 
@@ -236,8 +240,8 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Email Address"
-                android:textSize="14dp"
-                android:textStyle="normal">
+                android:textSize="15dp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -253,7 +257,8 @@
                 android:hint="Enter your email address"
                 android:textColor="@color/black"
                 android:inputType="textEmailAddress"
-                android:textSize="15dp">
+                android:textSize="16dp"
+                android:textStyle="bold">
 
             </EditText>
 

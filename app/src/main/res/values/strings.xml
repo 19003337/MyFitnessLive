@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">MyFitnessLive</string>
+
+    <string-array name="weightUnits">
+        <item>Kilograms</item>
+        <item>Pounds</item>
+    </string-array>
+
+    <string-array name="heightUnits">
+        <item>Centimeters</item>
+        <item>Inches</item>
+    </string-array>
+
+    <string-array name="energyUnits">
+        <item>Calories</item>
+        <item>Kilojoules</item>
+    </string-array>
+
+    <string-array name="waterUnits">
+        <item>Milliliters</item>
+        <item>Cups</item>
+        <item>Ounces</item>
+    </string-array>
+
 </resources>

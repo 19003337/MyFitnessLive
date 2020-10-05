@@ -21,7 +21,6 @@
         android:gravity="top"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="50dp">
-
     </TextView>
 
     <TextView
@@ -36,7 +35,6 @@
         android:textStyle="bold"
         android:padding="5dp"
         android:layout_marginBottom="5dp">
-
     </TextView>
 
     <TextView
@@ -51,7 +49,6 @@
         android:textStyle="bold"
         android:padding="5dp"
         android:layout_marginBottom="5dp">
-
     </TextView>
 
 </LinearLayout>
