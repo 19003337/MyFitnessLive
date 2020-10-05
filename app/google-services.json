@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "319262386191",
+    "firebase_url": "https://myfitneive.firebaseio.com",
+    "project_id": "myfitneive",
+    "storage_bucket": "myfitneive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319262386191:android:639c14d5117e77277b1b7a",
+        "android_client_info": {
+          "package_name": "com.vc19003337.myfitnesslive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319262386191-1keaegmla1278clg6a699c1hh6rd5rme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-okLbFXVNY1r75BLMunipbCwHkE0PMq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319262386191-1keaegmla1278clg6a699c1hh6rd5rme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
