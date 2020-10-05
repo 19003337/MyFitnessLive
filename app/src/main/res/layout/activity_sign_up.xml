@@ -55,6 +55,7 @@
                 android:layout_marginRight="5dp"
                 android:fontFamily="@font/marcellus"
                 android:textColor="@color/black"
+                android:inputType="textPersonName"
                 android:hint="Enter your name and surname"
                 android:textSize="20dp" />
 
@@ -67,6 +68,7 @@
                 android:layout_marginRight="5dp"
                 android:fontFamily="@font/marcellus"
                 android:textColor="@color/black"
+                android:inputType="textPersonName"
                 android:hint="Enter username"
                 android:textSize="20dp" />
 
@@ -79,6 +81,7 @@
                 android:layout_marginRight="5dp"
                 android:fontFamily="@font/marcellus"
                 android:textColor="@color/black"
+                android:inputType="textEmailAddress"
                 android:hint="Enter email address"
                 android:textSize="20dp" />
 

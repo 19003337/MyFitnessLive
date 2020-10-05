@@ -86,8 +86,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginRight="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Full Name"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -103,7 +104,8 @@
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your name and surname"
                 android:textColor="@color/black"
-                android:textSize="20dp">
+                android:inputType="textPersonName"
+                android:textSize="15dp">
 
             </EditText>
 
@@ -114,8 +116,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Gender"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -130,8 +133,9 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Male / Female"
+                android:inputType="text"
                 android:textColor="@color/black"
-                android:textSize="20dp">
+                android:textSize="15dp">
 
             </EditText>
 
@@ -142,10 +146,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Date of Birth"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
-
             </TextView>
 
             <EditText
@@ -157,10 +161,10 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Enter your Date of Birth"
+                android:hint="Select Date of Birth"
                 android:textColor="@color/black"
-                android:textSize="20dp">
-
+                android:inputType="date"
+                android:textSize="15dp">
             </EditText>
 
             <TextView
@@ -170,8 +174,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Height"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -187,7 +192,8 @@
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your height"
                 android:textColor="@color/black"
-                android:textSize="20dp">
+                android:inputType="number"
+                android:textSize="15dp">
 
             </EditText>
 
@@ -198,8 +204,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Starting Weight"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -215,7 +222,8 @@
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your starting weight"
                 android:textColor="@color/black"
-                android:textSize="20dp">
+                android:inputType="numberDecimal"
+                android:textSize="15dp">
 
             </EditText>
 
@@ -226,8 +234,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
                 android:text="Email Address"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textStyle="normal">
 
             </TextView>
@@ -243,7 +252,8 @@
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your email address"
                 android:textColor="@color/black"
-                android:textSize="20dp">
+                android:inputType="textEmailAddress"
+                android:textSize="15dp">
 
             </EditText>
 
