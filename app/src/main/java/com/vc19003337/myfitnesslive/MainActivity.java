@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent openNewActivity = new Intent(MainActivity.this, ForgotPassword.class);
+                Intent openNewActivity = new Intent(MainActivity.this, SignUp.class);
                 startActivity(openNewActivity);
             }
         });
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
                                             + mAuth.getCurrentUser().getEmail() + " successfully",
                                     Toast.LENGTH_SHORT).show();
 
-                            Intent openNewActivity = new Intent(MainActivity.this, ForgotPassword.class);
+                            Intent openNewActivity = new Intent(MainActivity.this, HomeScreen.class);
                             startActivity(openNewActivity);
                         }
 
@@ -93,7 +93,5 @@ public class MainActivity extends AppCompatActivity
                 startActivity(openNewActivity);
             }
         });
-
-
     }
 }
