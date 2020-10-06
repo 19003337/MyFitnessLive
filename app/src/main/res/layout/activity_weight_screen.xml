@@ -7,7 +7,7 @@
     tools:context=".WeightScreen">
 
     <ImageView
-        android:id="@+id/imageView_Goals"
+        android:id="@+id/imageView_Weight"
         android:layout_width="match_parent"
         android:layout_height="218dp"
         app:layout_constraintBottom_toBottomOf="parent"
