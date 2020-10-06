@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUp extends AppCompatActivity
 {
 
-    EditText fullName, username, email, password, confirmPassword;
+    EditText fullName, email, password, confirmPassword;
     Button signUp, signIn;
     private FirebaseAuth mAuth;
 
@@ -31,7 +31,6 @@ public class SignUp extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
 
         fullName = findViewById(R.id.et_fullName);
-        username = findViewById(R.id.et_username);
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         confirmPassword = findViewById(R.id.et_passwordConfirmation);
@@ -54,7 +53,6 @@ public class SignUp extends AppCompatActivity
             public void onClick(View view)
             {
                 String enteredFullName = fullName.getText().toString().trim();
-                String enteredUsername = username.getText().toString().trim();
                 String enteredEmail = email.getText().toString().trim();
                 String enteredPassword = password.getText().toString().trim();
                 String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
