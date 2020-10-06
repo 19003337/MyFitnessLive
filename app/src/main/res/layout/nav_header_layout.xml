@@ -6,7 +6,7 @@
     android:background="@drawable/navigation"
     android:gravity="bottom"
     android:padding="15dp"
-    android:theme="@style/ThemeOverlay.AppCompat">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <TextView
         android:id="@+id/tv_MyFitnessLive"

@@ -45,12 +45,24 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         helper = new IntentHelper();
 
-        /*toggleOnAndOff = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                "Open Navigation Drawer", "Close Navigation Drawer");
+        toggleOnAndOff = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawerLayout.addDrawerListener(toggleOnAndOff);
         toggleOnAndOff.syncState();
-         */
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
     }
 
     @Override

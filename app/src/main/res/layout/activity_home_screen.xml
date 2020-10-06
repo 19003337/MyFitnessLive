@@ -20,8 +20,63 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            android:background="@color/blue"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <ImageView
+            android:id="@+id/imageView_HomeScreen"
+            android:layout_width="match_parent"
+            android:layout_height="208dp"
+            app:srcCompat="@drawable/home"/>
+
+        <TextView
+            android:id="@+id/tv_CaloriesRemaining"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/marcellus"
+            android:gravity="center"
+            android:text="721 calories remaining"
+            android:textColor="@color/blue"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_TargetCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_outline_adjust_24"
+                android:text="1200 kcal"
+                android:textAllCaps="false"/>
+
+            <Button
+            android:id="@+id/btn_CaloriesConsumed"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/ic_baseline_fastfood_24"
+            android:text="853 kcal"
+            android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_CaloriesBurned"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_baseline_directions_run_24"
+                android:text="374 kcal"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 
@@ -39,34 +94,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView_Main"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:srcCompat="@drawable/home">
-        </ImageView>
-
-        <TextView
-            android:id="@+id/tv_CaloriesRemaining"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/marcellus"
-            android:text="721 calories remaining"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="normal">
-        </TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
-        </LinearLayout>
 
     </LinearLayout>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
