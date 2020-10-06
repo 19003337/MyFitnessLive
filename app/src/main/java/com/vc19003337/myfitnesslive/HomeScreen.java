@@ -111,6 +111,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
             case R.id.nav_Logout:
                 mAuth.signOut();
+                helper.openIntent(this, MainActivity.class);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
