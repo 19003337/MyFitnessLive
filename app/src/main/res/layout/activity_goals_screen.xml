@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView_Goals"
-        android:layout_width="wrap_content"
-        android:layout_height="330dp"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -28,7 +28,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.96">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,13 +40,14 @@
                 android:id="@+id/tv_WeightHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Weight"
-                android:textSize="20dp"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp">
+                android:textSize="20dp"
+                android:textStyle="bold">
+
             </TextView>
 
             <TextView
@@ -60,6 +61,7 @@
                 android:text="Starting Weight"
                 android:textSize="15dp"
                 android:textStyle="bold">
+
             </TextView>
 
             <TextView
@@ -67,14 +69,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Starting weight set in Profile"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
+
             </TextView>
 
             <TextView
@@ -82,8 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Current Weight"
                 android:textSize="15dp"
@@ -96,14 +97,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Current weight as per Weight Screen"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
+
             </TextView>
 
             <TextView
@@ -111,12 +112,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Goal Weight"
                 android:textSize="15dp"
                 android:textStyle="bold">
+
             </TextView>
 
             <EditText
@@ -133,20 +134,20 @@
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
+
             </EditText>
 
             <TextView
                 android:id="@+id/tv_CaloriesHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Calories"
-                android:textSize="20dp"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp">
-            </TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/tv_DailyCalorieIntake"
@@ -175,8 +176,7 @@
                 android:inputType="date"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold">
-            </EditText>
+                android:textStyle="bold"></EditText>
 
         </LinearLayout>
 

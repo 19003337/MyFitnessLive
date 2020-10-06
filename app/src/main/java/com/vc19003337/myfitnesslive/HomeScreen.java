@@ -15,6 +15,7 @@ import android.widget.Toast;
 //import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
@@ -23,6 +24,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -96,7 +98,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Logout:
-                helper.openIntent(this, HomeScreen.class);
+                mAuth.signOut();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -108,4 +110,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     {
 
     }
+
+
 }

@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imageView_Profile"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="270dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,9 @@
             android:text="Charmaine Dobbin"
             android:textColor="@color/black"
             android:textSize="24dp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+
+        </TextView>
 
         <TextView
             android:id="@+id/tv_Email"
@@ -63,7 +65,7 @@
 
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="450dp"
+        android:layout_height="470dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -81,8 +83,8 @@
                 android:id="@+id/tv_FullNameLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/marcellus"
                 android:text="Full Name"
@@ -101,8 +103,8 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your name and surname"
-                android:textColor="@color/black"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
 
@@ -149,8 +151,7 @@
                 android:fontFamily="@font/marcellus"
                 android:text="Date of Birth"
                 android:textSize="15dp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
             <EditText
                 android:id="@+id/et_dateOfBirth"
@@ -162,11 +163,10 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Select Date of Birth"
-                android:textColor="@color/black"
                 android:inputType="date"
+                android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold">
-            </EditText>
+                android:textStyle="bold"></EditText>
 
             <TextView
                 android:id="@+id/tv_Height"
@@ -192,8 +192,8 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your height"
-                android:textColor="@color/black"
                 android:inputType="number"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
 
@@ -223,8 +223,8 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your starting weight"
-                android:textColor="@color/black"
                 android:inputType="numberDecimal"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
 
@@ -254,8 +254,8 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:hint="Enter your email address"
-                android:textColor="@color/black"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold">
 
