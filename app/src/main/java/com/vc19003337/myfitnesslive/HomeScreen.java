@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 //import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
@@ -74,7 +75,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Progress:
-                helper.openIntent(this, HomeScreen.class);
+                Toast.makeText(this, "Coming Soon! Functionality currently in development.",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Weight:
