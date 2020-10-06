@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoalsScreen">
+
+    <ImageView
+        android:id="@+id/imageView_Goals"
+        android:layout_width="wrap_content"
+        android:layout_height="330dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/goals">
+    </ImageView>
+
+
+    <ScrollView
+        android:layout_width="413dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_WeightHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="Weight"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_StartingWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Starting Weight"
+                android:textSize="15dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_startingWeightOutput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Starting weight set in Profile"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_CurrentWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Current Weight"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_currentWeightOutput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Current weight as per Weight Screen"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_GoalWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Goal Weight"
+                android:textSize="15dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <EditText
+                android:id="@+id/et_goalWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Enter your goal weight"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_CaloriesHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="Calories"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_DailyCalorieIntake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Daily Calorie Intake"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/et_dailyCalorieIntake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Enter your daily calorie intake target"
+                android:inputType="date"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+            </EditText>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

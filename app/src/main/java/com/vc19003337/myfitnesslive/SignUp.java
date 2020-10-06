@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity
 {
-
     EditText fullName, email, password, confirmPassword;
     Button signUp, signIn;
     private FirebaseAuth mAuth;
@@ -42,7 +41,7 @@ public class SignUp extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent openNewActivity = new Intent(SignUp.this, Settings.class);
+                Intent openNewActivity = new Intent(SignUp.this, Profile.class);
                 startActivity(openNewActivity);
             }
         });

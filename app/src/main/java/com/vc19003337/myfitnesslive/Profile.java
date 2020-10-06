@@ -48,9 +48,8 @@ public class Profile extends AppCompatActivity
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(Profile.this,
-                        android.R.style.Theme_DeviceDefault_Light_DarkActionBar,
-                        mDateSetListener, year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                        android.R.style.Theme_Light_Panel, mDateSetListener, year,month,day);
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
         });
@@ -61,7 +60,6 @@ public class Profile extends AppCompatActivity
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month = month + 1;
-
                 String date = day+ "/" + month + "/" + year;
                 dateOfBirth.setText(date);
             }
