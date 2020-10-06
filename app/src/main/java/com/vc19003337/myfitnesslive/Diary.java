@@ -11,8 +11,9 @@ public class Diary
     int snacksCalories;
     double water;
     int exerciseCaloriesBurned;
+    int totalCalories;
 
-    public Diary(Date entryDate, int breakfastCalories, int lunchCalories, int dinnerCalories, int snacksCalories, double water, int exerciseCaloriesBurned)
+    public Diary(Date entryDate, int breakfastCalories, int lunchCalories, int dinnerCalories, int snacksCalories, double water, int exerciseCaloriesBurned, int totalCalories)
     {
         this.entryDate = entryDate;
         this.breakfastCalories = breakfastCalories;
@@ -21,6 +22,7 @@ public class Diary
         this.snacksCalories = snacksCalories;
         this.water = water;
         this.exerciseCaloriesBurned = exerciseCaloriesBurned;
+        this.totalCalories = totalCalories;
     }
 
     public Date getEntryDate()
@@ -91,5 +93,15 @@ public class Diary
     public void setExerciseCaloriesBurned(int exerciseCaloriesBurned)
     {
         this.exerciseCaloriesBurned = exerciseCaloriesBurned;
+    }
+
+    public int getTotalCalories()
+    {
+        return totalCalories;
+    }
+
+    public void setTotalCalories(int totalCalories)
+    {
+        this.totalCalories = totalCalories;
     }
 }
