@@ -58,7 +58,6 @@ public class SignUp extends AppCompatActivity
             public void onClick(View view)
             {
 
-
                 String enteredFullName = fullName.getText().toString().trim();
                 String enteredEmail = email.getText().toString().trim();
                 String enteredPassword = password.getText().toString().trim();
@@ -73,11 +72,14 @@ public class SignUp extends AppCompatActivity
                             {
                                 if (task.isSuccessful())
                                 {
-                                    myRef.setValue(logins);
+                                    myRef.push().setValue(logins);
 
                                     Toast.makeText(SignUp.this, "User "
-                                                    + mAuth.getCurrentUser().getEmail() + "successfully registered",
+                                                    + mAuth.getCurrentUser().getEmail() + "successfully registered. Please login.",
                                             Toast.LENGTH_SHORT).show();
+
+                                    Intent openNewActivity = new Intent(SignUp.this, MainActivity.class);
+                                    startActivity(openNewActivity);
                                 }
 
                                 else

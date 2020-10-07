@@ -42,7 +42,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
     Double height, startingWeight;
-    TextView displayFullName, displayEmailAddress;
+    TextView displayFullName, displayEmailAddress, heightUnit, weightUnit;
     EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
     RadioGroup radioSexGroup;
     RadioButton radioSexButton;
@@ -66,7 +66,25 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         startingWeightET = findViewById(R.id.et_startingWeight);
         emailET = findViewById(R.id.et_email);
         radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
+        heightUnit = findViewById(R.id.tv_HeightUnit);
+        weightUnit = findViewById(R.id.tv_WeightUnit);
         save = findViewById(R.id.btn_save);
+
+        //Set displayed text
+        displayFullName.setText(fullNameET.getText().toString());
+        displayEmailAddress.setText(currentUser.getEmail());
+        //displayEmailAddress.setText(emailET.getText().toString().trim());
+
+        if (unitsMeasured.equals("Imperial"))
+        {
+            heightUnit.setText("inches");
+            weightUnit.setText("pounds");
+        }
+        else
+        {
+            heightUnit.setText("cm");
+            weightUnit.setText("kg");
+        }
 
         Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
@@ -102,9 +120,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         };
 
-
         // Read from the database
-        /*
         myRef.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -114,11 +130,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 // whenever data at this location is updated.
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
 
-                if(userProfile.emailAddress.equals(currentUser.getEmail()))
+                if (userProfile != null && userProfile.emailAddress.equals(currentUser.getEmail()))
                 {
 
                 }
-
             }
 
             @Override
@@ -126,7 +141,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             {
                 // Failed to read value
             }
-        });*/
+        });
+
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -135,10 +151,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             {
                 int selectedId=radioSexGroup.getCheckedRadioButtonId();
                 radioSexButton=(RadioButton)findViewById(selectedId);
-
-                //Set displayed text
-                displayFullName.setText(fullNameET.getText().toString());
-                displayEmailAddress.setText(emailET.getText().toString().trim());
 
                 fullName = fullNameET.getText().toString();
                 gender = radioSexButton.getText().toString();
@@ -165,15 +177,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         });
             }
         });
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
     {
-        //String text = adapterView.getItemAtPosition(position).toString();
-        //Toast.makeText(adapterView.getContext(),text, Toast.LENGTH_SHORT).show();
-        unitsMeasured = adapterView.getItemAtPosition(position).toString();;
+        String text = adapterView.getItemAtPosition(position).toString();
+        Toast.makeText(adapterView.getContext(),text, Toast.LENGTH_SHORT).show();
+        unitsMeasured = adapterView.getContext().toString();;
     }
 
     @Override
