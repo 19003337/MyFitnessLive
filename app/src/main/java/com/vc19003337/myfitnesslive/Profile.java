@@ -1,5 +1,6 @@
 package com.vc19003337.myfitnesslive;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -13,10 +14,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Calendar;
 
 public class Profile extends AppCompatActivity
 {
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("profiles");
+    private FirebaseAuth mAuth;
+
     TextView displayFullName, displayEmailAddress;
     EditText fullName, gender, dateOfBirth, height, startingWeight, email;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -64,5 +77,24 @@ public class Profile extends AppCompatActivity
                 dateOfBirth.setText(date);
             }
         };
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = snapshot.getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                // Failed to read value
+            }
+        });
     }
 }
