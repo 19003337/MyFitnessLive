@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PhotoAlbum"></activity>
         <activity android:name=".ExerciseScreen" />
         <activity android:name=".WaterIntakeScreen" />
         <activity android:name=".WeightScreen" />

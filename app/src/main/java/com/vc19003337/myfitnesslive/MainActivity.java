@@ -2,6 +2,7 @@ package com.vc19003337.myfitnesslive;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +16,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
 {
     EditText email, password;
     Button login, register, forgotPassword;
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    //CardView loginCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity
         login = findViewById(R.id.btn_signIn);
         register = findViewById(R.id.btn_signUp);
         forgotPassword = findViewById(R.id.btn_forgotPassword);
+        currentUser = mAuth.getCurrentUser();
+        //loginCardView = findViewById(R.id.cardView_login);
 
         register.setOnClickListener(new View.OnClickListener()
         {
@@ -94,5 +100,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        if (currentUser != null)
+        {
+            Toast.makeText(MainActivity.this, "You are already logged in " + currentUser.getEmail(),
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }

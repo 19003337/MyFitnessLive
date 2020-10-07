@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 
@@ -25,6 +27,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
     private FirebaseAuth mAuth;
+    Button camera;
+    TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +36,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
+        goalCalories = findViewById(R.id.btn_TargetCalories);
+        caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
+        caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
+        camera = findViewById(R.id.btn_Camera);
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
@@ -50,6 +59,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         drawerLayout.addDrawerListener(toggleOnAndOff);
         toggleOnAndOff.syncState();
+
     }
 
     @Override
@@ -112,6 +122,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.nav_Logout:
                 mAuth.signOut();
                 helper.openIntent(this, MainActivity.class);
+                Toast.makeText(this, "You have successfully logged out!",
+                        Toast.LENGTH_SHORT).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
