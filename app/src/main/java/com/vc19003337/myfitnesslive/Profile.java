@@ -9,12 +9,21 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,34 +32,49 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
-public class Profile extends AppCompatActivity
+public class Profile extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
+    String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
+    Double height, startingWeight;
     TextView displayFullName, displayEmailAddress;
-    EditText fullName, gender, dateOfBirth, height, startingWeight, email;
+    EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
+    RadioGroup radioSexGroup;
+    RadioButton radioSexButton;
     DatePickerDialog.OnDateSetListener mDateSetListener;
     Button save;
+    UserProfile userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         displayFullName = findViewById(R.id.tv_FullNameLabel);
         displayEmailAddress = findViewById(R.id.tv_EmailAddress);
-        fullName = findViewById(R.id.et_fullName);
-        gender = findViewById(R.id.et_gender);
-        dateOfBirth = findViewById(R.id.et_dateOfBirth);
-        height = findViewById(R.id.et_height);
-        startingWeight = findViewById(R.id.et_startingWeight);
-        email = findViewById(R.id.et_email);
+        fullNameET = findViewById(R.id.et_fullName);
+        dateOfBirthET = findViewById(R.id.et_dateOfBirth);
+        heightET = findViewById(R.id.et_height);
+        startingWeightET = findViewById(R.id.et_startingWeight);
+        emailET = findViewById(R.id.et_email);
+        radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
+        save = findViewById(R.id.btn_save);
 
-        dateOfBirth.setOnClickListener(new View.OnClickListener()
+        Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
+        ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
+        adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUnits.setAdapter(adapterW);
+        spinnerUnits.setOnItemSelectedListener(this);
+
+        dateOfBirthET.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -74,11 +98,13 @@ public class Profile extends AppCompatActivity
             {
                 month = month + 1;
                 String date = day+ "/" + month + "/" + year;
-                dateOfBirth.setText(date);
+                dateOfBirthET.setText(date);
             }
         };
 
+
         // Read from the database
+        /*
         myRef.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -86,7 +112,12 @@ public class Profile extends AppCompatActivity
             {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = snapshot.getValue(String.class);
+                UserProfile userProfile = snapshot.getValue(UserProfile.class);
+
+                if(userProfile.emailAddress.equals(currentUser.getEmail()))
+                {
+
+                }
 
             }
 
@@ -95,6 +126,65 @@ public class Profile extends AppCompatActivity
             {
                 // Failed to read value
             }
+        });*/
+
+        save.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                int selectedId=radioSexGroup.getCheckedRadioButtonId();
+                radioSexButton=(RadioButton)findViewById(selectedId);
+
+                //Set displayed text
+                displayFullName.setText(fullNameET.getText().toString());
+                displayEmailAddress.setText(emailET.getText().toString().trim());
+
+                fullName = fullNameET.getText().toString();
+                gender = radioSexButton.getText().toString();
+                dateOfBirth = dateOfBirthET.getText().toString();
+                emailAddress = emailET.getText().toString().trim();
+                height = Double.parseDouble(heightET.getText().toString().trim());
+                startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
+
+                userProfile = new UserProfile(fullName, gender, dateOfBirth, height, startingWeight, emailAddress, unitsMeasured);
+                myRef.push().setValue(userProfile)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(Profile.this, "Profile saved successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener()
+                        {
+                            @Override
+                            public void onFailure(@NonNull Exception e)
+                            {
+                                Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
+    {
+        //String text = adapterView.getItemAtPosition(position).toString();
+        //Toast.makeText(adapterView.getContext(),text, Toast.LENGTH_SHORT).show();
+        unitsMeasured = adapterView.getItemAtPosition(position).toString();;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView)
+    {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture)
+    {
+
     }
 }

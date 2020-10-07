@@ -15,12 +15,18 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity
 {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("logins");
+
     EditText fullName, email, password, confirmPassword;
     Button signUp, signIn;
     private FirebaseAuth mAuth;
+    Login logins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,10 +57,14 @@ public class SignUp extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+
+
                 String enteredFullName = fullName.getText().toString().trim();
                 String enteredEmail = email.getText().toString().trim();
                 String enteredPassword = password.getText().toString().trim();
                 String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
+
+                logins = new Login(enteredFullName, enteredEmail, enteredPassword, enteredPasswordConfirmation);
 
                 mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -63,6 +73,8 @@ public class SignUp extends AppCompatActivity
                             {
                                 if (task.isSuccessful())
                                 {
+                                    myRef.setValue(logins);
+
                                     Toast.makeText(SignUp.this, "User "
                                                     + mAuth.getCurrentUser().getEmail() + "successfully registered",
                                             Toast.LENGTH_SHORT).show();
