@@ -57,6 +57,7 @@
                 android:drawableLeft="@drawable/ic_outline_adjust_24"
                 android:text="1200 kcal"
                 android:textAllCaps="false"
+                android:background="@android:color/transparent"
                 android:layout_marginStart="10dp"/>
 
             <Button
@@ -66,7 +67,8 @@
                 android:drawableLeft="@drawable/ic_baseline_fastfood_24"
                 android:text="853 kcal"
                 android:textAllCaps="false"
-                android:layout_marginStart="30dp"/>
+                android:background="@android:color/transparent"
+                android:layout_marginStart="50dp"/>
 
             <Button
                 android:id="@+id/btn_CaloriesBurned"
@@ -75,7 +77,8 @@
                 android:drawableLeft="@drawable/ic_baseline_directions_run_24"
                 android:text="374 kcal"
                 android:textAllCaps="false"
-                android:layout_marginStart="30dp"/>
+                android:background="@android:color/transparent"
+                android:layout_marginStart="50dp"/>
 
         </LinearLayout>
 

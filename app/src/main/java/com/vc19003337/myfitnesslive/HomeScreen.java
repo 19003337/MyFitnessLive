@@ -102,7 +102,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Diary:
-                helper.openIntent(this, HomeScreen.class);
+                //helper.openIntent(this, HomeScreen.class);
+                Toast.makeText(this, "New Feature Coming Soon!",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Goals:
@@ -112,7 +114,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Progress:
-                Toast.makeText(this, "Coming Soon! Functionality currently in development.",
+                Toast.makeText(this, "Coming Soon!",
                         Toast.LENGTH_SHORT).show();
                 break;
 
@@ -132,7 +134,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
             case R.id.nav_Settings:
                 //helper.openIntent(this, Settings.class);
-                Toast.makeText(this, "Currently under development",
+                Toast.makeText(this, "See unit settings in your Profile",
                         Toast.LENGTH_SHORT).show();
                 break;
 
