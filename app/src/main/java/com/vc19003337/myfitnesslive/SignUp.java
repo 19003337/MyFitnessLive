@@ -63,7 +63,7 @@ public class SignUp extends AppCompatActivity
                 String enteredPassword = password.getText().toString().trim();
                 String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
 
-                logins = new Login(enteredFullName, enteredEmail, enteredPassword, enteredPasswordConfirmation);
+                logins = new Login(enteredFullName, enteredEmail);
 
                 mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

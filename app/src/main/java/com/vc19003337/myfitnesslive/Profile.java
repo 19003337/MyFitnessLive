@@ -34,7 +34,6 @@ import java.util.Calendar;
 
 public class Profile extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
@@ -58,13 +57,13 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        displayFullName = findViewById(R.id.tv_FullNameLabel);
-        displayEmailAddress = findViewById(R.id.tv_EmailAddress);
+        displayFullName = findViewById(R.id.tv_FullName);
+        displayEmailAddress = findViewById(R.id.tv_Email);
         fullNameET = findViewById(R.id.et_fullName);
         dateOfBirthET = findViewById(R.id.et_dateOfBirth);
         heightET = findViewById(R.id.et_height);
         startingWeightET = findViewById(R.id.et_startingWeight);
-        emailET = findViewById(R.id.et_email);
+        emailET = findViewById(R.id.et_emailAddress);
         radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
         heightUnit = findViewById(R.id.tv_HeightUnit);
         weightUnit = findViewById(R.id.tv_WeightUnit);
@@ -73,18 +72,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         //Set displayed text
         displayFullName.setText(fullNameET.getText().toString());
         displayEmailAddress.setText(currentUser.getEmail());
+        emailET.setText(currentUser.getEmail());
         //displayEmailAddress.setText(emailET.getText().toString().trim());
 
-        if (unitsMeasured.equals("Imperial"))
-        {
-            heightUnit.setText("inches");
-            weightUnit.setText("pounds");
-        }
-        else
-        {
-            heightUnit.setText("cm");
-            weightUnit.setText("kg");
-        }
 
         Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
@@ -121,6 +111,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         };
 
         // Read from the database
+        /*
         myRef.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -142,24 +133,32 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 // Failed to read value
             }
         });
-
+        */
 
         save.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                int selectedId=radioSexGroup.getCheckedRadioButtonId();
-                radioSexButton=(RadioButton)findViewById(selectedId);
+                try {
+                    int selectedId=radioSexGroup.getCheckedRadioButtonId();
+                    radioSexButton=(RadioButton)findViewById(selectedId);
 
-                fullName = fullNameET.getText().toString();
-                gender = radioSexButton.getText().toString();
-                dateOfBirth = dateOfBirthET.getText().toString();
-                emailAddress = emailET.getText().toString().trim();
-                height = Double.parseDouble(heightET.getText().toString().trim());
-                startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
+                    fullName = fullNameET.getText().toString().trim();
+                    gender = radioSexButton.getText().toString().trim();
+                    dateOfBirth = dateOfBirthET.getText().toString().trim();
+                    emailAddress = emailET.getText().toString().trim();
+                    height = Double.parseDouble(heightET.getText().toString().trim());
+                    startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
 
-                userProfile = new UserProfile(fullName, gender, dateOfBirth, height, startingWeight, emailAddress, unitsMeasured);
+                    userProfile = new UserProfile(fullName, gender, dateOfBirth, height, startingWeight, emailAddress, unitsMeasured);
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
                 myRef.push().setValue(userProfile)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -182,9 +181,20 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
     {
-        String text = adapterView.getItemAtPosition(position).toString();
-        Toast.makeText(adapterView.getContext(),text, Toast.LENGTH_SHORT).show();
-        unitsMeasured = adapterView.getContext().toString();;
+        unitsMeasured = adapterView.getItemAtPosition(position).toString();
+        //String text = adapterView.getItemAtPosition(position).toString();
+        Toast.makeText(adapterView.getContext(),unitsMeasured, Toast.LENGTH_SHORT).show();
+
+        if (unitsMeasured.equals("Imperial"))
+        {
+            heightUnit.setText("inches");
+            weightUnit.setText("pounds");
+        }
+        else
+        {
+            heightUnit.setText("cm");
+            weightUnit.setText("kg");
+        }
     }
 
     @Override
