@@ -1,284 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Profile">
+
+
+<ImageView
+    android:id="@+id/imageView_Profile"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Profile">
+    android:layout_height="270dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0"
+    app:srcCompat="@drawable/profile">
+</ImageView>
 
 
-    <ImageView
-        android:id="@+id/imageView_Profile"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/profile">
-    </ImageView>
+<LinearLayout
+    android:id="@+id/linearLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.288">
 
+    <TextView
+        android:id="@+id/tv_FullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/marcellus"
+        android:gravity="center"
+        android:text="Charmaine Dobbin"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/marcellus"
+        android:gravity="center"
+        android:text="19003337@vcconnect.co.za"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout>
+
+<ScrollView
+    android:layout_width="409dp"
+    android:layout_height="470dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="1.0">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288">
+        android:layout_marginStart="15dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_FullName"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_Profile"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/marcellus"
-            android:gravity="center"
-            android:text="Charmaine Dobbin"
+            android:text="Profile"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="20dp"
+            android:textStyle="bold">
+
+        </TextView>
+        <TextView
+            android:id="@+id/tv_FullNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Full Name"
+            android:textSize="15dp"
             android:textStyle="bold">
 
         </TextView>
 
-        <TextView
-            android:id="@+id/tv_Email"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/et_fullName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/marcellus"
-            android:gravity="center"
-            android:text="19003337@vcconnect.co.za"
+            android:hint="Enter your name and surname"
+            android:inputType="textPersonName"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold">
 
-        </TextView>
-    </LinearLayout>
+        </EditText>
 
-    <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="470dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        <TextView
+            android:id="@+id/tv_EmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Email Address"
+            android:textSize="15dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/marcellus"
+            android:hint="Enter your email address"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold">
+
+        </EditText>
+
+        <TextView
+            android:id="@+id/tv_Gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Gender"
+            android:textSize="15dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup_Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:fontFamily="@font/marcellus"
+                android:id="@+id/radioButton_Male"
+                android:checked="false"
+                android:textSize="15dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:fontFamily="@font/marcellus"
+                android:id="@+id/radioButton_Female"
+                android:checked="false"
+                android:textSize="15dp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_DateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Date of Birth"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_dateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/marcellus"
+            android:hint="Click here to open calendar"
+            android:inputType="date"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_Height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Height"
+            android:textSize="15dp"
+            android:textStyle="bold">
+
+        </TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_Profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Profile"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold">
-
-            </TextView>
-            <TextView
-                android:id="@+id/tv_FullNameLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Full Name"
-                android:textSize="15dp"
-                android:textStyle="bold">
-
-            </TextView>
+            android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/et_fullName"
-                android:layout_width="match_parent"
+                android:id="@+id/et_height"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Enter your name and surname"
-                android:inputType="textPersonName"
+                android:hint="Height"
+                android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold">
-
-            </EditText>
+                android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/tv_EmailAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Email Address"
-                android:textSize="15dp"
-                android:textStyle="bold">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/et_emailAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:hint="Enter your email address"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold">
-
-            </EditText>
-
-            <TextView
-                android:id="@+id/tv_Gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Gender"
-                android:textSize="15dp"
-                android:textStyle="bold">
-
-            </TextView>
-
-            <RadioGroup
-                android:id="@+id/radioGroup_Gender"
+                android:id="@+id/tv_HeightUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:fontFamily="@font/marcellus"
-                    android:id="@+id/radioButton_Male"
-                    android:checked="false"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:fontFamily="@font/marcellus"
-                    android:id="@+id/radioButton_Female"
-                    android:checked="false"
-                    android:textSize="15dp" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/tv_DateOfBirth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
-                android:text="Date of Birth"
-                android:textSize="15dp"
+                android:text="cm"
+                android:textSize="18dp"
                 android:textStyle="bold"/>
 
-            <EditText
-                android:id="@+id/et_dateOfBirth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:hint="Click here to open calendar"
-                android:inputType="date"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/tv_Height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Height"
-                android:textSize="15dp"
-                android:textStyle="bold">
-
-            </TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/et_height"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/marcellus"
-                    android:hint="Height"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/tv_HeightUnit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/marcellus"
-                    android:text="cm"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
+        </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/tv_StartingWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Starting Weight"
-                android:textSize="15dp"
-                android:textStyle="bold">
+        <TextView
+            android:id="@+id/tv_StartingWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Starting Weight"
+            android:textSize="15dp"
+            android:textStyle="bold">
 
-            </TextView>
+        </TextView>
 
 
         <LinearLayout
@@ -313,181 +313,181 @@
 
         </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_Goals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Goals"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold">
-            </TextView>
+        <TextView
+            android:id="@+id/tv_Goals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Goals"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold">
+        </TextView>
 
 
-            <TextView
-                android:id="@+id/tv_GoalWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Target Weight"
-                android:textSize="15dp"
-                android:textStyle="bold">
+        <TextView
+            android:id="@+id/tv_GoalWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Target Weight"
+            android:textSize="15dp"
+            android:textStyle="bold">
 
         </TextView>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/et_goalWeight"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/marcellus"
-                    android:hint="Goal Weight"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold">
-
-                </EditText>
-                <TextView
-                    android:id="@+id/tv_WeightUnitGoal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/marcellus"
-                    android:text="kg"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-            <TextView
-                android:id="@+id/tv_GoalCalories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Target Calories"
-                android:textSize="15dp"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/et_targetCalories"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/marcellus"
-                    android:hint="Target Calories"
-                    android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold">
-
-                </EditText>
-                <TextView
-                    android:id="@+id/tv_CaloriesUnitGoal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/marcellus"
-                    android:text="kcal"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-
-
-            <TextView
-                android:id="@+id/tv_UnitsHeading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:text="Units Measured"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold">
-
-            </TextView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_Unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="Unit"
-                    android:fontFamily="@font/marcellus"
-                    android:textColor="@color/black"
-                    android:textSize="16dp">
-                </TextView>
-
-                <Spinner
-                    android:id="@+id/spinner_UnitsMeasured"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:gravity="right">
-
-                </Spinner>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_save"
+            <EditText
+                android:id="@+id/et_goalWeight"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/blue"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:text="Save"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal">
-            </Button>
+                android:hint="Goal Weight"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+
+            </EditText>
+            <TextView
+                android:id="@+id/tv_WeightUnitGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="kg"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_GoalCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Target Calories"
+            android:textSize="15dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_targetCalories"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Target Calories"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+
+            </EditText>
+            <TextView
+                android:id="@+id/tv_CaloriesUnitGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="kcal"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
 
-    </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_UnitsHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/marcellus"
+            android:text="Units Measured"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold">
+
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_Unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Unit"
+                android:fontFamily="@font/marcellus"
+                android:textColor="@color/black"
+                android:textSize="16dp">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spinner_UnitsMeasured"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:gravity="right">
+
+            </Spinner>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/marcellus"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal">
+        </Button>
+
+    </LinearLayout>
+
+
+</ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
