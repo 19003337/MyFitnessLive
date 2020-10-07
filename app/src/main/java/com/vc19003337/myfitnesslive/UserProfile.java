@@ -5,21 +5,30 @@ import java.util.Date;
 public class UserProfile
 {
     String fullName;
+    String emailAddress;
     String gender;
     String dateOfBirth;
     double height;
     double startingWeight;
-    String emailAddress;
+    double goalWeight;
+    int dailyCalorieIntake;
     String unitsMeasured;
 
-    public UserProfile(String fullName, String gender, String dateOfBirth, double height, double startingWeight, String emailAddress, String unitsMeasured)
+    public UserProfile()
     {
+        //Empty constructor - Don't delete!
+    }
+
+    public UserProfile(String fullName, String emailAddress, String gender, String dateOfBirth, double height, double startingWeight,
+                       double goalWeight, int dailyCalorieIntake, String unitsMeasured) {
         this.fullName = fullName;
+        this.emailAddress = emailAddress;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.startingWeight = startingWeight;
-        this.emailAddress = emailAddress;
+        this.goalWeight = goalWeight;
+        this.dailyCalorieIntake = dailyCalorieIntake;
         this.unitsMeasured = unitsMeasured;
     }
 
@@ -89,5 +98,38 @@ public class UserProfile
 
     public void setUnitsMeasured(String unitsMeasured) {
         this.unitsMeasured = unitsMeasured;
+    }
+
+    public double getGoalWeight()
+    {
+        return goalWeight;
+    }
+
+    public void setGoalWeight(double goalWeight)
+    {
+        this.goalWeight = goalWeight;
+    }
+
+    public int getDailyCalorieIntake()
+    {
+        return dailyCalorieIntake;
+    }
+
+    public void setDailyCalorieIntake(int dailyCalorieIntake)
+    {
+        this.dailyCalorieIntake = dailyCalorieIntake;
+    }
+
+    public String ToString()
+    {
+        return "Full Name: " + fullName + "/n"
+                + "Email Address: " + emailAddress+ "/n"
+                + "Gender: " + gender + "/n"
+                + "Date of Birth: " + dateOfBirth+ "/n"
+                + "Height: " + height + "/n"
+                + "Starting Weight: " + startingWeight + "/n"
+                + "Goal Weight: " + goalWeight + "/n"
+                + "Target Calories: " + dailyCalorieIntake
+                + "Units Measured: " + unitsMeasured;
     }
 }

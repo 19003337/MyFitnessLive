@@ -27,6 +27,7 @@ public class SignUp extends AppCompatActivity
     Button signUp, signIn;
     private FirebaseAuth mAuth;
     Login logins;
+    //String usersName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -75,10 +76,11 @@ public class SignUp extends AppCompatActivity
                                     myRef.push().setValue(logins);
 
                                     Toast.makeText(SignUp.this, "User "
-                                                    + mAuth.getCurrentUser().getEmail() + "successfully registered. Please login.",
+                                                    + mAuth.getCurrentUser().getEmail() + "successfully registered. Please setup your profile.",
                                             Toast.LENGTH_SHORT).show();
 
-                                    Intent openNewActivity = new Intent(SignUp.this, MainActivity.class);
+                                    Intent openNewActivity = new Intent(SignUp.this, Profile.class);
+                                    //openNewActivity.putExtra("Login", usersName);
                                     startActivity(openNewActivity);
                                 }
 

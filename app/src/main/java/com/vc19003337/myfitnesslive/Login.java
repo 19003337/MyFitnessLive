@@ -33,4 +33,9 @@ public class Login
         this.emailAddress = emailAddress;
     }
 
+    public String toString()
+    {
+        return "Full Name " + fullName;
+    }
+
 }

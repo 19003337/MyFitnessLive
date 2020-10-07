@@ -40,9 +40,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     FirebaseUser currentUser;
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
-    Double height, startingWeight;
-    TextView displayFullName, displayEmailAddress, heightUnit, weightUnit;
-    EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
+    Double height, startingWeight, targetWeight;
+    Integer targetCalories;
+    TextView displayFullName, displayEmailAddress, heightUnit, weightUnit, weightUnitGoal;
+    EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET, targetWeightET, targetCaloriesET;
     RadioGroup radioSexGroup;
     RadioButton radioSexButton;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -63,18 +64,22 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         dateOfBirthET = findViewById(R.id.et_dateOfBirth);
         heightET = findViewById(R.id.et_height);
         startingWeightET = findViewById(R.id.et_startingWeight);
+        targetWeightET = findViewById(R.id.et_goalWeight);
+        targetCaloriesET = findViewById(R.id.et_targetCalories);
+
         emailET = findViewById(R.id.et_emailAddress);
         radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
         heightUnit = findViewById(R.id.tv_HeightUnit);
         weightUnit = findViewById(R.id.tv_WeightUnit);
+        weightUnitGoal = findViewById(R.id.tv_WeightUnitGoal);
         save = findViewById(R.id.btn_save);
 
         //Set displayed text
-        displayFullName.setText(fullNameET.getText().toString());
+        //fullName = getIntent().getStringExtra("Full Name");
+        //displayFullName.setText(fullName);
+        //fullNameET.setText(fullName);
         displayEmailAddress.setText(currentUser.getEmail());
         emailET.setText(currentUser.getEmail());
-        //displayEmailAddress.setText(emailET.getText().toString().trim());
-
 
         Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
@@ -123,7 +128,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
 
                 if (userProfile != null && userProfile.emailAddress.equals(currentUser.getEmail()))
                 {
-
+                    System.out.println(userProfile);
                 }
             }
 
@@ -131,6 +136,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             public void onCancelled(@NonNull DatabaseError error)
             {
                 // Failed to read value
+                Toast.makeText(
             }
         });
         */
@@ -150,8 +156,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     emailAddress = emailET.getText().toString().trim();
                     height = Double.parseDouble(heightET.getText().toString().trim());
                     startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
+                    targetWeight = Double.parseDouble(targetWeightET.getText().toString().trim());
+                    targetCalories = Integer.parseInt(targetCaloriesET.getText().toString().trim());
 
-                    userProfile = new UserProfile(fullName, gender, dateOfBirth, height, startingWeight, emailAddress, unitsMeasured);
+                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight,  targetWeight, targetCalories, unitsMeasured);
                 }
                 catch (Exception ex)
                 {
@@ -189,11 +197,13 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         {
             heightUnit.setText("inches");
             weightUnit.setText("pounds");
+            weightUnitGoal.setText("pounds");
         }
         else
         {
             heightUnit.setText("cm");
             weightUnit.setText("kg");
+            weightUnitGoal.setText("kg");
         }
     }
 

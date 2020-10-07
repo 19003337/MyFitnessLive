@@ -18,15 +18,22 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("profiles");
+    private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
     IntentHelper helper;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
-    private FirebaseAuth mAuth;
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
 
@@ -35,11 +42,15 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
         caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
+        //fullName = findViewById(R.id.tv_FullName);
+        //emailAddress = findViewById(R.id.tv_EmailAddress);
         camera = findViewById(R.id.btn_Camera);
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
@@ -50,8 +61,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //emailAddress.setText(currentUser.getEmail());
         drawerLayout = findViewById(R.id.nav_Drawer);
-
         helper = new IntentHelper();
 
         toggleOnAndOff = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -95,7 +106,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Goals:
-                helper.openIntent(this, GoalsScreen.class);
+                //helper.openIntent(this, GoalsScreen.class);
+                Toast.makeText(this, "Goals are currently setup in your Profile",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Progress:
@@ -108,7 +121,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_PhotoAlbum:
-                helper.openIntent(this, HomeScreen.class);
+                //helper.openIntent(this, HomeScreen.class);
+                Toast.makeText(this, "Currently in development",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Profile:
@@ -116,7 +131,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Settings:
-                helper.openIntent(this, Settings.class);
+                //helper.openIntent(this, Settings.class);
+                Toast.makeText(this, "Currently under development",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Logout:

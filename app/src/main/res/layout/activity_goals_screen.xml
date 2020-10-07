@@ -28,7 +28,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96">
+        app:layout_constraintVertical_bias="0.98">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                 android:text="Calories"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tv_DailyCalorieIntake"
@@ -176,7 +176,24 @@
                 android:inputType="date"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold"></EditText>
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/marcellus"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal">
+            </Button>
 
         </LinearLayout>
 

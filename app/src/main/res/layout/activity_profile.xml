@@ -123,6 +123,37 @@
             </EditText>
 
             <TextView
+                android:id="@+id/tv_EmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Email Address"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/et_emailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/marcellus"
+                android:hint="Enter your email address"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold">
+
+            </EditText>
+
+            <TextView
                 android:id="@+id/tv_Gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +214,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Click here to select Date of Birth"
+                android:hint="Click here to open calendar"
                 android:inputType="date"
                 android:textColor="@color/black"
                 android:textSize="16dp"
@@ -282,37 +313,114 @@
 
         </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_Goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Goals"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold">
+            </TextView>
+
 
             <TextView
-                android:id="@+id/tv_EmailAddress"
+                android:id="@+id/tv_GoalWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/marcellus"
-                android:text="Email Address"
+                android:text="Target Weight"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+        </TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_goalWeight"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/marcellus"
+                    android:hint="Goal Weight"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </EditText>
+                <TextView
+                    android:id="@+id/tv_WeightUnitGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/marcellus"
+                    android:text="kg"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_GoalCalories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/marcellus"
+                android:text="Target Calories"
                 android:textSize="15dp"
                 android:textStyle="bold">
 
             </TextView>
 
-            <EditText
-                android:id="@+id/et_emailAddress"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:hint="Enter your email address"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold">
+                android:orientation="horizontal">
 
-            </EditText>
+                <EditText
+                    android:id="@+id/et_targetCalories"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/marcellus"
+                    android:hint="Target Calories"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </EditText>
+                <TextView
+                    android:id="@+id/tv_CaloriesUnitGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/marcellus"
+                    android:text="kcal"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/tv_UnitsHeading"
