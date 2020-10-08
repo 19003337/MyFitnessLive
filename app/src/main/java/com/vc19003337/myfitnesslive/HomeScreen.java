@@ -36,6 +36,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     NavigationView navigationView;
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
+    String targetCalories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

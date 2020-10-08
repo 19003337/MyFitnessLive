@@ -3,6 +3,7 @@ package com.vc19003337.myfitnesslive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -78,13 +79,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         save = findViewById(R.id.btn_save);
 
         //Set displayed text
-        //fullName = getIntent().getStringExtra("Full Name");
-        //displayFullName.setText(fullName);
-        //fullNameET.setText(fullName);
         displayEmailAddress.setText(currentUser.getEmail());
         emailET.setText(currentUser.getEmail());
 
-        Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
+        final Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
         adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnits.setAdapter(adapterW);
@@ -128,17 +126,47 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     userProfile = profileValues.getValue(UserProfile.class);
                 }
 
-                if (userProfile != null && userProfile.emailAddress.equals(currentUser.getEmail()))
+
+                if (userProfile != null)
                 {
-                    fullNameET.setText(userProfile.getFullName());
-                    radioSexButton.setText(userProfile.getGender());
-                    dateOfBirthET.setText(userProfile.getDateOfBirth());
-                    emailET.setText(userProfile.getEmailAddress());
-                    //heightET.setText(userProfile.getHeight());
-                    //startingWeightET.setText(userProfile.getStartingWeight());
-                    //targetWeightET.setText(userProfile.getGoalWeight());
-                    //targetCaloriesET.setText(userProfile.getDailyCalorieIntake());
+                    try
+                    {
+                        fullNameET.setText(userProfile.getFullName());
+                        dateOfBirthET.setText(userProfile.getDateOfBirth());
+                        emailET.setText(userProfile.getEmailAddress());
+                        heightET.setText(String.valueOf(userProfile.getHeight()));
+                        startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
+                        targetWeightET.setText((String.valueOf(userProfile.getGoalWeight())));
+                        targetCaloriesET.setText(String.valueOf(userProfile.getDailyCalorieIntake()));
+
+                        if (userProfile.getUnitsMeasured().equals("Metric"))
+                        {
+                            spinnerUnits.setSelection(0);
+                        }
+                        else if (userProfile.getUnitsMeasured().equals("Imperial"))
+                        {
+                            spinnerUnits.setSelection(1);
+                        }
+
+                        if(userProfile.getGender().equals("Female"))
+                        {
+                            ((RadioButton)radioSexGroup.findViewById(R.id.radioButton_Female)).setChecked(true);
+                        }
+                        else if (userProfile.getGender().equals("Male"))
+                        {
+                            ((RadioButton)radioSexGroup.findViewById(R.id.radioButton_Male)).setChecked(true);
+                        }
+                        else {
+                            Toast.makeText(Profile.this, "Please select your gender", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
+
             }
 
             @Override
@@ -185,24 +213,25 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                     Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                    Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                    startActivity(openNewActivity);
                 }
                 catch (Exception ex)
                 {
                     Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
-                Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
-                startActivity(openNewActivity);
             }
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
     {
         unitsMeasured = adapterView.getItemAtPosition(position).toString();
         //String text = adapterView.getItemAtPosition(position).toString();
-        Toast.makeText(adapterView.getContext(),unitsMeasured, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(adapterView.getContext(),unitsMeasured, Toast.LENGTH_SHORT).show();
 
         if (unitsMeasured.equals("Imperial"))
         {
