@@ -2,37 +2,20 @@ package com.vc19003337.myfitnesslive;
 
 public class Goals
 {
-    double startingWeight;
-    double currentWeight;
+    //double startingWeight;
+    //double currentWeight;
     double goalWeight;
     int dailyCalorieIntake;
 
-    public Goals(double startingWeight, double currentWeight, double goalWeight, int dailyCalorieIntake)
+    public Goals()
     {
-        this.startingWeight = startingWeight;
-        this.currentWeight = currentWeight;
+
+    }
+
+    public Goals(double goalWeight, int dailyCalorieIntake)
+    {
         this.goalWeight = goalWeight;
         this.dailyCalorieIntake = dailyCalorieIntake;
-    }
-
-    public double getStartingWeight()
-    {
-        return startingWeight;
-    }
-
-    public void setStartingWeight(double startingWeight)
-    {
-        this.startingWeight = startingWeight;
-    }
-
-    public double getCurrentWeight()
-    {
-        return currentWeight;
-    }
-
-    public void setCurrentWeight(double currentWeight)
-    {
-        this.currentWeight = currentWeight;
     }
 
     public double getGoalWeight()
@@ -53,5 +36,13 @@ public class Goals
     public void setDailyCalorieIntake(int dailyCalorieIntake)
     {
         this.dailyCalorieIntake = dailyCalorieIntake;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Goals: " + "/n" +
+                "GoalWeight = " + goalWeight + "/n" +
+                "DailyCalorieIntake = " + dailyCalorieIntake;
     }
 }

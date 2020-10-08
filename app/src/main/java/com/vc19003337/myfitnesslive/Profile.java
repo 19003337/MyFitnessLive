@@ -35,9 +35,10 @@ import java.util.Calendar;
 public class Profile extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("profiles");
+    //DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
     Double height, startingWeight, targetWeight;
@@ -57,6 +58,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         displayFullName = findViewById(R.id.tv_FullName);
         displayEmailAddress = findViewById(R.id.tv_Email);
@@ -115,31 +117,36 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         };
 
-        // Read from the database
-        /*
-        myRef.addValueEventListener(new ValueEventListener()
+        myRef.child("Profile").addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                UserProfile userProfile = snapshot.getValue(UserProfile.class);
+                for (DataSnapshot profileValues : snapshot.getChildren())
+                {
+                    userProfile = profileValues.getValue(UserProfile.class);
+                }
 
                 if (userProfile != null && userProfile.emailAddress.equals(currentUser.getEmail()))
                 {
-                    System.out.println(userProfile);
+                    fullNameET.setText(userProfile.getFullName());
+                    radioSexButton.setText(userProfile.getGender());
+                    dateOfBirthET.setText(userProfile.getDateOfBirth());
+                    emailET.setText(userProfile.getEmailAddress());
+                    //heightET.setText(userProfile.getHeight());
+                    //startingWeightET.setText(userProfile.getStartingWeight());
+                    //targetWeightET.setText(userProfile.getGoalWeight());
+                    //targetCaloriesET.setText(userProfile.getDailyCalorieIntake());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
-                // Failed to read value
-                Toast.makeText(
+                Toast.makeText(Profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        */
+
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -160,28 +167,28 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     targetCalories = Integer.parseInt(targetCaloriesET.getText().toString().trim());
 
                     userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight,  targetWeight, targetCalories, unitsMeasured);
+
+                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                    myRef.child("Profile").setValue(userProfile)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(Profile.this, "Profile saved successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener()
+                            {
+                                @Override
+                                public void onFailure(@NonNull Exception e)
+                                {
+                                    Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
                 catch (Exception ex)
                 {
                     Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
-
-                myRef.push().setValue(userProfile)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(Profile.this, "Profile saved successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener()
-                        {
-                            @Override
-                            public void onFailure(@NonNull Exception e)
-                            {
-                                Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
         });
     }

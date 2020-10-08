@@ -108,9 +108,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Goals:
-                //helper.openIntent(this, GoalsScreen.class);
-                Toast.makeText(this, "Goals are currently setup in your Profile",
-                        Toast.LENGTH_SHORT).show();
+                helper.openIntent(this, GoalsScreen.class);
+                //Toast.makeText(this, "Goals are currently setup in your Profile",
+                        //Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Progress:

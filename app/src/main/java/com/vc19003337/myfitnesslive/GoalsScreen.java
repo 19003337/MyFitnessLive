@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class GoalsScreen extends AppCompatActivity
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("goals");
+    //DatabaseReference myRef = database.getReference("goals");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
@@ -40,8 +40,6 @@ public class GoalsScreen extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        startingWeightTV = findViewById(R.id.tv_startingWeightOutput);
-        currentWeightTV = findViewById(R.id.tv_currentWeightOutput);
         goalWeightET = findViewById(R.id.et_goalWeight);
         dailyCalorieIntakeET = findViewById(R.id.et_dailyCalorieIntake);
         save = findViewById(R.id.btn_save);
@@ -52,33 +50,31 @@ public class GoalsScreen extends AppCompatActivity
             public void onClick(View view)
             {
                 try {
-                    startingWeight = Double.parseDouble(startingWeightTV.getText().toString().trim());
-                    currentWeight = Double.parseDouble(currentWeightTV.getText().toString().trim());
                     goalWeight = Double.parseDouble(goalWeightET.getText().toString().trim());
-                    dailyCalorieIntake = Integer.parseInt(startingWeightTV.getText().toString().trim());
+                    dailyCalorieIntake = Integer.parseInt(dailyCalorieIntakeET.getText().toString().trim());
 
-                    goals = new Goals(startingWeight, currentWeight, goalWeight, dailyCalorieIntake);
+                    goals = new Goals(goalWeight, dailyCalorieIntake);
+                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                    myRef.child("Goals").setValue(goals)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(GoalsScreen.this, "Goals saved successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener()
+                            {
+                                @Override
+                                public void onFailure(@NonNull Exception e)
+                                {
+                                    Toast.makeText(GoalsScreen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
                 catch (Exception ex)
                 {
                     Toast.makeText(GoalsScreen.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
-                myRef.push().setValue(goals)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(GoalsScreen.this, "Goals saved successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener()
-                        {
-                            @Override
-                            public void onFailure(@NonNull Exception e)
-                            {
-                                Toast.makeText(GoalsScreen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
         });
 

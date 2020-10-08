@@ -4,21 +4,26 @@ import java.util.Date;
 
 public class Weight
 {
-    Date entryDate;
+    String entryDate;
     double currentWeight;
 
-    public Weight(Date entryDate, double currentWeight)
+    public Weight()
+    {
+
+    }
+
+    public Weight(String entryDate, double currentWeight)
     {
         this.entryDate = entryDate;
         this.currentWeight = currentWeight;
     }
 
-    public Date getEntryDate()
+    public String  getEntryDate()
     {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate)
+    public void setEntryDate(String  entryDate)
     {
         this.entryDate = entryDate;
     }
@@ -31,5 +36,12 @@ public class Weight
     public void setCurrentWeight(double currentWeight)
     {
         this.currentWeight = currentWeight;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Entry Date: " + entryDate + "/n" +
+                "Current Weight: " + currentWeight;
     }
 }

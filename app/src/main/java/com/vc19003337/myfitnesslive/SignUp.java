@@ -22,7 +22,6 @@ public class SignUp extends AppCompatActivity
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("logins");
-
     EditText fullName, email, password, confirmPassword;
     Button signUp, signIn;
     private FirebaseAuth mAuth;
@@ -48,7 +47,7 @@ public class SignUp extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent openNewActivity = new Intent(SignUp.this, Profile.class);
+                Intent openNewActivity = new Intent(SignUp.this, MainActivity.class);
                 startActivity(openNewActivity);
             }
         });
@@ -58,46 +57,53 @@ public class SignUp extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-
-                String enteredFullName = fullName.getText().toString().trim();
-                String enteredEmail = email.getText().toString().trim();
-                String enteredPassword = password.getText().toString().trim();
-                String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
-
-                logins = new Login(enteredFullName, enteredEmail);
-
-                mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task)
-                            {
-                                if (task.isSuccessful())
-                                {
-                                    myRef.push().setValue(logins);
-
-                                    Toast.makeText(SignUp.this, "User "
-                                                    + mAuth.getCurrentUser().getEmail() + "successfully registered. Please setup your profile.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                    Intent openNewActivity = new Intent(SignUp.this, Profile.class);
-                                    //openNewActivity.putExtra("Login", usersName);
-                                    startActivity(openNewActivity);
-                                }
-
-                                else
-                                {
-                                    Toast.makeText(SignUp.this, "Error! Not registered",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }).addOnFailureListener(new OnFailureListener()
+                try
                 {
-                    @Override
-                    public void onFailure(@NonNull Exception e)
+                    String enteredFullName = fullName.getText().toString().trim();
+                    String enteredEmail = email.getText().toString().trim();
+                    String enteredPassword = password.getText().toString().trim();
+                    String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
+
+                    logins = new Login(enteredFullName, enteredEmail);
+                    //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                    //myRef.child("Login").setValue(logins);
+
+                    mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task)
+                                {
+                                    if (task.isSuccessful())
+                                    {
+                                        myRef.push().setValue(logins);
+                                        Toast.makeText(SignUp.this, "User "
+                                                        + mAuth.getCurrentUser().getEmail() + "successfully registered. Please setup your profile.",
+                                                Toast.LENGTH_SHORT).show();
+
+                                        Intent openNewActivity = new Intent(SignUp.this, Profile.class);
+                                        startActivity(openNewActivity);
+                                    }
+
+                                    else
+                                    {
+                                        Toast.makeText(SignUp.this, "Error! Not registered",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener()
                     {
-                        Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(SignUp.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
