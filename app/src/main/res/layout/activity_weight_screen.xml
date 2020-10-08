@@ -87,8 +87,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/marcellus"
-            android:hint="Enter your daily calorie intake target"
-            android:inputType="date"
+            android:hint="Enter your current weight"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold" />

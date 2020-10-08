@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -189,6 +190,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 {
                     Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+
+                Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                startActivity(openNewActivity);
             }
         });
     }

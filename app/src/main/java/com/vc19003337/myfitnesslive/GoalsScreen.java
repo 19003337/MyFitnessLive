@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class GoalsScreen extends AppCompatActivity
 {
@@ -43,6 +46,34 @@ public class GoalsScreen extends AppCompatActivity
         goalWeightET = findViewById(R.id.et_goalWeight);
         dailyCalorieIntakeET = findViewById(R.id.et_dailyCalorieIntake);
         save = findViewById(R.id.btn_save);
+
+        /*
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        myRef.child("Goals").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for (DataSnapshot weightValues : snapshot.getChildren())
+                {
+                    goals = weightValues.getValue(Goals.class);
+                }
+
+
+                if(goals != null)
+                {
+                    goalWeightET.setText((int) goals.getGoalWeight());
+                    dailyCalorieIntakeET.setText(goals.getDailyCalorieIntake());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(GoalsScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+         */
 
         save.setOnClickListener(new View.OnClickListener()
         {

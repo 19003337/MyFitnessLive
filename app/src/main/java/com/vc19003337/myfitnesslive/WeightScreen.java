@@ -43,7 +43,7 @@ public class WeightScreen extends AppCompatActivity
     Button save;
     Weight weight;
     ListView weightChanges;
-    String[] changesListed;
+    //String[] changesListed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,12 +64,12 @@ public class WeightScreen extends AppCompatActivity
         save = findViewById(R.id.btn_save);
         weightChanges = findViewById(R.id.lv_WeightChanges);
 
+        /*
         final List<String> changesListedArrayList = new ArrayList<>(Arrays.asList(changesListed));
         final ArrayAdapter<String> adapter = new ArrayAdapter<>
                 (WeightScreen.this, android.R.layout.simple_list_item_1, changesListedArrayList);
         weightChanges.setAdapter(adapter);
-
-
+         */
 
         save.setOnClickListener(new View.OnClickListener()
         {
