@@ -206,8 +206,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                 }
                             });
 
-                    //Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
-                    //startActivity(openNewActivity);
+                    Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                    startActivity(openNewActivity);
                 }
                 catch (Exception ex)
                 {
