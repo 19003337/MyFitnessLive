@@ -134,9 +134,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Settings:
-                //helper.openIntent(this, Settings.class);
-                Toast.makeText(this, "See unit settings in your Profile",
-                        Toast.LENGTH_SHORT).show();
+                helper.openIntent(this, Settings.class);
+                //Toast.makeText(this, "See unit settings in your Profile",
+                        //Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Logout:

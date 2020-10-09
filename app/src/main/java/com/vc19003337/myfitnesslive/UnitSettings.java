@@ -8,7 +8,10 @@ public class UnitSettings
     //String energyUnit;
     //String waterUnit;
 
+    public UnitSettings()
+    {
 
+    }
 
     public UnitSettings(String unitSetting, String weightUnit, String heightUnit)
     {
