@@ -50,8 +50,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
         caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
-        //fullName = findViewById(R.id.tv_FullName);
-        //emailAddress = findViewById(R.id.tv_EmailAddress);
+
         camera = findViewById(R.id.btn_Camera);
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
@@ -62,7 +61,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        //emailAddress.setText(currentUser.getEmail());
         drawerLayout = findViewById(R.id.nav_Drawer);
         helper = new IntentHelper();
 
@@ -134,9 +132,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Settings:
-                //helper.openIntent(this, Settings.class);
-                Toast.makeText(this, "See unit settings in your Profile",
-                        Toast.LENGTH_SHORT).show();
+                helper.openIntent(this, Settings.class);
+                //Toast.makeText(this, "See unit settings in your Profile",
+                        //Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Logout:

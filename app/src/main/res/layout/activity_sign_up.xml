@@ -126,20 +126,27 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btn_signIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account? SIGN IN"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:backgroundTint="@android:color/transparent"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"/>
-
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_signIn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Already have an account? SIGN IN"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97"
+        android:textSize="16dp"
+        android:textStyle="normal">
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

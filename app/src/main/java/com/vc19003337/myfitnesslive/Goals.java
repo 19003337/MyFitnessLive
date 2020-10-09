@@ -2,14 +2,12 @@ package com.vc19003337.myfitnesslive;
 
 public class Goals
 {
-    //double startingWeight;
-    //double currentWeight;
     double goalWeight;
     int dailyCalorieIntake;
 
     public Goals()
     {
-
+        //Empty constructor for data retrieval
     }
 
     public Goals(double goalWeight, int dailyCalorieIntake)

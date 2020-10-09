@@ -42,6 +42,7 @@ public class GoalsScreen extends AppCompatActivity
         setContentView(R.layout.activity_goals_screen);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         goalWeightET = findViewById(R.id.et_goalWeight);
         dailyCalorieIntakeET = findViewById(R.id.et_dailyCalorieIntake);
@@ -51,8 +52,8 @@ public class GoalsScreen extends AppCompatActivity
         save = findViewById(R.id.btn_save);
 
 
-        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
-        myRef.child("Goals").addValueEventListener(new ValueEventListener() {
+        myRef.child("Goals").addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

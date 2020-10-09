@@ -10,7 +10,7 @@ public class UnitSettings
 
     public UnitSettings()
     {
-
+        //Empty constructor for data retrieval
     }
 
     public UnitSettings(String unitSetting, String weightUnit, String heightUnit)

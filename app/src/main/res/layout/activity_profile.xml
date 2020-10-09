@@ -89,9 +89,8 @@ tools:context=".Profile">
             android:text="Profile"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold">
+            android:textStyle="bold"/>
 
-        </TextView>
         <TextView
             android:id="@+id/tv_FullNameLabel"
             android:layout_width="match_parent"
@@ -101,9 +100,7 @@ tools:context=".Profile">
             android:fontFamily="@font/marcellus"
             android:text="Full Name"
             android:textSize="15dp"
-            android:textStyle="bold">
-
-        </TextView>
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/et_fullName"
@@ -119,7 +116,6 @@ tools:context=".Profile">
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold">
-
         </EditText>
 
         <TextView
@@ -132,9 +128,7 @@ tools:context=".Profile">
             android:fontFamily="@font/marcellus"
             android:text="Email Address"
             android:textSize="15dp"
-            android:textStyle="bold">
-
-        </TextView>
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/et_emailAddress"
@@ -149,9 +143,8 @@ tools:context=".Profile">
             android:inputType="textEmailAddress"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:textStyle="bold">
+            android:textStyle="bold"/>
 
-        </EditText>
 
         <TextView
             android:id="@+id/tv_Gender"
@@ -163,9 +156,7 @@ tools:context=".Profile">
             android:fontFamily="@font/marcellus"
             android:text="Gender"
             android:textSize="15dp"
-            android:textStyle="bold">
-
-        </TextView>
+            android:textStyle="bold"/>
 
         <RadioGroup
             android:id="@+id/radioGroup_Gender"
@@ -175,20 +166,20 @@ tools:context=".Profile">
             android:layout_marginStart="10dp">
 
             <RadioButton
+                android:id="@+id/radioButton_Male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"
                 android:fontFamily="@font/marcellus"
-                android:id="@+id/radioButton_Male"
                 android:checked="false"
                 android:textSize="15dp" />
 
             <RadioButton
+                android:id="@+id/radioButton_Female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female"
                 android:fontFamily="@font/marcellus"
-                android:id="@+id/radioButton_Female"
                 android:checked="false"
                 android:textSize="15dp" />
         </RadioGroup>
@@ -230,9 +221,7 @@ tools:context=".Profile">
             android:fontFamily="@font/marcellus"
             android:text="Height"
             android:textSize="15dp"
-            android:textStyle="bold">
-
-        </TextView>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,7 +237,6 @@ tools:context=".Profile">
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Height"
                 android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textSize="16dp"
@@ -295,13 +283,11 @@ tools:context=".Profile">
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Weight"
                 android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold">
+                android:textStyle="bold"/>
 
-            </EditText>
             <TextView
                 android:id="@+id/tv_WeightUnit"
                 android:layout_width="wrap_content"
@@ -323,9 +309,8 @@ tools:context=".Profile">
             android:text="Units Measured"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold">
+            android:textStyle="bold"/>
 
-        </TextView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -341,8 +326,7 @@ tools:context=".Profile">
                 android:text="Unit"
                 android:fontFamily="@font/marcellus"
                 android:textColor="@color/black"
-                android:textSize="16dp">
-            </TextView>
+                android:textSize="16dp"/>
 
             <Spinner
                 android:id="@+id/spinner_UnitsMeasured"
@@ -353,9 +337,8 @@ tools:context=".Profile">
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:gravity="right">
+                android:gravity="end"/>
 
-            </Spinner>
         </LinearLayout>
 
         <Button
@@ -370,13 +353,10 @@ tools:context=".Profile">
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal">
-        </Button>
+            android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
 
-
 </ScrollView>
-
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

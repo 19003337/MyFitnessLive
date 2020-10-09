@@ -77,12 +77,12 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         displayEmailAddress.setText(currentUser.getEmail());
         emailET.setText(currentUser.getEmail());
 
-        if(displayFullName.equals("Welcome"))
+        if(displayFullName.getText().toString().trim().equals("Welcome"))
         {
             //Intent used for first time registered users
             enteredFullName = getIntent().getStringExtra("FullName");
             displayFullName.setText(enteredFullName);
-            displayFullName.setText(enteredFullName);
+            fullNameET.setText(enteredFullName);
         }
 
 
@@ -119,6 +119,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         };
 
+
         myRef.child("Profile").addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -139,6 +140,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         emailET.setText(userProfile.getEmailAddress());
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
+
 
                         if (userProfile.getUnitsMeasured().equals("Metric"))
                         {
@@ -179,6 +181,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 Toast.makeText(Profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
 
         save.setOnClickListener(new View.OnClickListener()
         {
