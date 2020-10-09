@@ -51,13 +51,11 @@ public class GoalsScreen extends AppCompatActivity
         goalsHeadingTV = findViewById(R.id.tv_GoalsHeading);
         save = findViewById(R.id.btn_save);
 
-
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-
                 for (DataSnapshot goalValues : snapshot.getChildren())
                 {
                     goals = goalValues.getValue(Goals.class);
