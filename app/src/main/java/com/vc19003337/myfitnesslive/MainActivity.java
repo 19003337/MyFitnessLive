@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
     CheckBox rememberMe;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
-    //CardView loginCardView;
+    CardView loginCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         forgotPassword = findViewById(R.id.btn_forgotPassword);
         currentUser = mAuth.getCurrentUser();
         rememberMe = findViewById(R.id.checkbox_rememberMe);
-        //loginCardView = findViewById(R.id.cardView_login);
+        loginCardView = findViewById(R.id.cardView_login);
 
         register.setOnClickListener(new View.OnClickListener()
         {

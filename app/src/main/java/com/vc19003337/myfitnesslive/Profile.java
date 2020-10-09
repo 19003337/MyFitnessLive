@@ -43,8 +43,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
-    Double height, startingWeight, targetWeight;
-    Integer targetCalories;
+    Double height, startingWeight;
+    //Integer targetCalories;
     TextView displayFullName, displayEmailAddress, heightUnit, weightUnit, weightUnitGoal;
     EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET, targetWeightET, targetCaloriesET;
     RadioGroup radioSexGroup;
@@ -60,7 +60,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         displayFullName = findViewById(R.id.tv_FullName);
         displayEmailAddress = findViewById(R.id.tv_Email);
@@ -69,13 +69,13 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         heightET = findViewById(R.id.et_height);
         startingWeightET = findViewById(R.id.et_startingWeight);
         targetWeightET = findViewById(R.id.et_goalWeight);
-        targetCaloriesET = findViewById(R.id.et_targetCalories);
+        //targetCaloriesET = findViewById(R.id.et_targetCalories);
 
         emailET = findViewById(R.id.et_emailAddress);
         radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
         heightUnit = findViewById(R.id.tv_HeightUnit);
         weightUnit = findViewById(R.id.tv_WeightUnit);
-        weightUnitGoal = findViewById(R.id.tv_WeightUnitGoal);
+        //weightUnitGoal = findViewById(R.id.tv_WeightUnitGoal);
         save = findViewById(R.id.btn_save);
 
         //Set displayed text
@@ -115,7 +115,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 dateOfBirthET.setText(date);
             }
         };
-
+/*
         myRef.child("Profile").addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -135,8 +135,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         emailET.setText(userProfile.getEmailAddress());
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
-                        targetWeightET.setText((String.valueOf(userProfile.getGoalWeight())));
-                        targetCaloriesET.setText(String.valueOf(userProfile.getDailyCalorieIntake()));
 
                         if (userProfile.getUnitsMeasured().equals("Metric"))
                         {
@@ -165,6 +163,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
+                else
+                {
+                    Toast.makeText(Profile.this, "Please enter and save your profile details", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -174,6 +176,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
 
+
+ */
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -190,10 +194,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     emailAddress = emailET.getText().toString().trim();
                     height = Double.parseDouble(heightET.getText().toString().trim());
                     startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
-                    targetWeight = Double.parseDouble(targetWeightET.getText().toString().trim());
-                    targetCalories = Integer.parseInt(targetCaloriesET.getText().toString().trim());
 
-                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight,  targetWeight, targetCalories, unitsMeasured);
+                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight, unitsMeasured);
 
                     DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     myRef.child("Profile").setValue(userProfile)
@@ -212,8 +214,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                 }
                             });
 
-                    Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
-                    startActivity(openNewActivity);
+                    //Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                    //startActivity(openNewActivity);
                 }
                 catch (Exception ex)
                 {

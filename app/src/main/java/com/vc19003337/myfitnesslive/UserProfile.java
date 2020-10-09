@@ -10,8 +10,8 @@ public class UserProfile
     String dateOfBirth;
     double height;
     double startingWeight;
-    double goalWeight;
-    int dailyCalorieIntake;
+    //double goalWeight;
+    //int dailyCalorieIntake;
     String unitsMeasured;
 
     public UserProfile()
@@ -19,16 +19,15 @@ public class UserProfile
         //Empty constructor - Don't delete!
     }
 
-    public UserProfile(String fullName, String emailAddress, String gender, String dateOfBirth, double height, double startingWeight,
-                       double goalWeight, int dailyCalorieIntake, String unitsMeasured) {
+    public UserProfile(String fullName, String emailAddress, String gender, String dateOfBirth,
+                       double height, double startingWeight, String unitsMeasured)
+    {
         this.fullName = fullName;
         this.emailAddress = emailAddress;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.startingWeight = startingWeight;
-        this.goalWeight = goalWeight;
-        this.dailyCalorieIntake = dailyCalorieIntake;
         this.unitsMeasured = unitsMeasured;
     }
 
@@ -100,26 +99,6 @@ public class UserProfile
         this.unitsMeasured = unitsMeasured;
     }
 
-    public double getGoalWeight()
-    {
-        return goalWeight;
-    }
-
-    public void setGoalWeight(double goalWeight)
-    {
-        this.goalWeight = goalWeight;
-    }
-
-    public int getDailyCalorieIntake()
-    {
-        return dailyCalorieIntake;
-    }
-
-    public void setDailyCalorieIntake(int dailyCalorieIntake)
-    {
-        this.dailyCalorieIntake = dailyCalorieIntake;
-    }
-
     public String ToString()
     {
         return "Full Name: " + fullName + "/n"
@@ -128,8 +107,6 @@ public class UserProfile
                 + "Date of Birth: " + dateOfBirth+ "/n"
                 + "Height: " + height + "/n"
                 + "Starting Weight: " + startingWeight + "/n"
-                + "Goal Weight: " + goalWeight + "/n"
-                + "Target Calories: " + dailyCalorieIntake
                 + "Units Measured: " + unitsMeasured;
     }
 }

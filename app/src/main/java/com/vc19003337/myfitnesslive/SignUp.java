@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity
                     //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     //myRef.child("Login").setValue(logins);
 
-                    if (enteredPassword == enteredPasswordConfirmation)
+                    if (enteredPassword.equals(enteredPasswordConfirmation))
                     {
                         mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>()

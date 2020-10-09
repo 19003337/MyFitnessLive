@@ -50,13 +50,14 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         save = findViewById(R.id.btn_save);
 
         final Spinner spinnerUnitsMeasured = findViewById(R.id.spinner_UnitsMeasured);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Settings.this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnitsMeasured.setAdapter(adapter);
         spinnerUnitsMeasured.setOnItemSelectedListener(this);
 
         myRef.child("Settings").addValueEventListener(new ValueEventListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
@@ -140,7 +141,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 }
             }
         });
-
     }
 
     @SuppressLint("SetTextI18n")
