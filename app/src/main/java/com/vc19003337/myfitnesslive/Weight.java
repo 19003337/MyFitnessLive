@@ -9,7 +9,7 @@ public class Weight
 
     public Weight()
     {
-
+        //Used for data retrieval
     }
 
     public Weight(String entryDate, double currentWeight)

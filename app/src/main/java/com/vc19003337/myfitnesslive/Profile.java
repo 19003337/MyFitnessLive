@@ -171,8 +171,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
 
-
-
         save.setOnClickListener(new View.OnClickListener()
         {
             @Override

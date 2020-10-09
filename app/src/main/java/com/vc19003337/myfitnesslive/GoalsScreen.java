@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,13 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 public class GoalsScreen extends AppCompatActivity
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference myRef = database.getReference("goals");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
     Double goalWeight;
     Integer dailyCalorieIntake;
     EditText goalWeightET, dailyCalorieIntakeET;
+    TextView goalWeightTV, dailyCalorieIntakeTV, goalsHeadingTV;
     Button save;
     Goals goals;
 
@@ -44,22 +45,29 @@ public class GoalsScreen extends AppCompatActivity
 
         goalWeightET = findViewById(R.id.et_goalWeight);
         dailyCalorieIntakeET = findViewById(R.id.et_dailyCalorieIntake);
+        goalWeightTV = findViewById(R.id.tv_GoalWeight);
+        dailyCalorieIntakeTV = findViewById(R.id.tv_DailyCalorieIntake);
+        goalsHeadingTV = findViewById(R.id.tv_GoalsHeading);
         save = findViewById(R.id.btn_save);
+
 
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         myRef.child("Goals").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                for (DataSnapshot weightValues : snapshot.getChildren())
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot goalValues : snapshot.getChildren())
                 {
-                    goals = weightValues.getValue(Goals.class);
+                    goals = goalValues.getValue(Goals.class);
                 }
 
-                if(goals != null)
+                if (goals != null)
                 {
-                    goalWeightET.setText((int) goals.getGoalWeight());
-                    dailyCalorieIntakeET.setText(goals.getDailyCalorieIntake());
+                    goalWeightET.setText(String.valueOf(goals.getGoalWeight()));
+                    dailyCalorieIntakeET.setText(String.valueOf(goals.getDailyCalorieIntake()));
+                }
+                else{
+                    Toast.makeText(GoalsScreen.this, "Please set your goals", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -69,6 +77,7 @@ public class GoalsScreen extends AppCompatActivity
                 Toast.makeText(GoalsScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
 
         save.setOnClickListener(new View.OnClickListener()
         {

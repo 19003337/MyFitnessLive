@@ -43,7 +43,6 @@ public class WeightScreen extends AppCompatActivity
     Button save;
     Weight weight;
     ListView weightChanges;
-    //String[] changesListed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,13 +62,6 @@ public class WeightScreen extends AppCompatActivity
         currentWeightET = findViewById(R.id.et_weightToday);
         save = findViewById(R.id.btn_save);
         weightChanges = findViewById(R.id.lv_WeightChanges);
-
-        /*
-        final List<String> changesListedArrayList = new ArrayList<>(Arrays.asList(changesListed));
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (WeightScreen.this, android.R.layout.simple_list_item_1, changesListedArrayList);
-        weightChanges.setAdapter(adapter);
-         */
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -97,28 +89,6 @@ public class WeightScreen extends AppCompatActivity
                                 }
                             });
 
-                    /*
-                    myRef.child("WeightChanges").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot)
-                        {
-
-                            for (DataSnapshot weightValues : snapshot.getChildren())
-                            {
-                                weight = weightValues.getValue(Weight.class);
-                                changesListedArrayList.add(weight.toString());
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error)
-                        {
-                            Toast.makeText(WeightScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                     */
                 }
                 catch (Exception ex)
                 {

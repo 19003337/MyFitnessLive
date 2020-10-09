@@ -49,8 +49,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         heightUnitTV = findViewById(R.id.tv_HeightUnit);
         save = findViewById(R.id.btn_save);
 
-        final Spinner spinnerUnitsMeasured = findViewById(R.id.spinner_UnitsMeasured);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Settings.this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
+        final Spinner spinnerUnitsMeasured = findViewById(R.id.spinner_UnitsMeasuredSettings);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Settings.this, R.array.unitsMeasuredSettings, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnitsMeasured.setAdapter(adapter);
         spinnerUnitsMeasured.setOnItemSelectedListener(this);
