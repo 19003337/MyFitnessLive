@@ -55,7 +55,8 @@ public class GoalsScreen extends AppCompatActivity
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
         {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
 
                 for (DataSnapshot goalValues : snapshot.getChildren())
                 {
