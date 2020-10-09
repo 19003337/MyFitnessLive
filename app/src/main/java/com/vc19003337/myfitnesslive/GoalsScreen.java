@@ -47,8 +47,6 @@ public class GoalsScreen extends AppCompatActivity
         dailyCalorieIntakeET = findViewById(R.id.et_dailyCalorieIntake);
         save = findViewById(R.id.btn_save);
 
-
-        /*
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         myRef.child("Goals").addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,8 +59,8 @@ public class GoalsScreen extends AppCompatActivity
 
                 if(goals != null)
                 {
-                    //goalWeightET.setText((int) goals.getGoalWeight());
-                    //dailyCalorieIntakeET.setText(goals.getDailyCalorieIntake());
+                    goalWeightET.setText((int) goals.getGoalWeight());
+                    dailyCalorieIntakeET.setText(goals.getDailyCalorieIntake());
                 }
             }
 
@@ -72,8 +70,6 @@ public class GoalsScreen extends AppCompatActivity
                 Toast.makeText(GoalsScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-         */
 
         save.setOnClickListener(new View.OnClickListener()
         {

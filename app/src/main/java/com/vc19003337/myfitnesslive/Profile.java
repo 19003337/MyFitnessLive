@@ -40,13 +40,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     //DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
-    //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
     Double height, startingWeight;
-    //Integer targetCalories;
-    TextView displayFullName, displayEmailAddress, heightUnit, weightUnit, weightUnitGoal;
-    EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET, targetWeightET, targetCaloriesET;
+    TextView displayFullName, displayEmailAddress, heightUnit, weightUnit;
+    EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
     RadioGroup radioSexGroup;
     RadioButton radioSexButton;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -60,7 +58,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         displayFullName = findViewById(R.id.tv_FullName);
         displayEmailAddress = findViewById(R.id.tv_Email);
@@ -68,14 +66,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         dateOfBirthET = findViewById(R.id.et_dateOfBirth);
         heightET = findViewById(R.id.et_height);
         startingWeightET = findViewById(R.id.et_startingWeight);
-        targetWeightET = findViewById(R.id.et_goalWeight);
-        //targetCaloriesET = findViewById(R.id.et_targetCalories);
 
         emailET = findViewById(R.id.et_emailAddress);
         radioSexGroup=(RadioGroup)findViewById(R.id.radioGroup_Gender);
         heightUnit = findViewById(R.id.tv_HeightUnit);
         weightUnit = findViewById(R.id.tv_WeightUnit);
-        //weightUnitGoal = findViewById(R.id.tv_WeightUnitGoal);
         save = findViewById(R.id.btn_save);
 
         //Set displayed text
@@ -115,7 +110,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 dateOfBirthET.setText(date);
             }
         };
-/*
+
         myRef.child("Profile").addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -177,7 +172,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         });
 
 
- */
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -237,13 +231,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         {
             heightUnit.setText("inches");
             weightUnit.setText("pounds");
-            weightUnitGoal.setText("pounds");
         }
         else
         {
             heightUnit.setText("cm");
             weightUnit.setText("kg");
-            weightUnitGoal.setText("kg");
         }
     }
 
