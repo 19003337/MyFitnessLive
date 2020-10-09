@@ -77,10 +77,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         displayEmailAddress.setText(currentUser.getEmail());
         emailET.setText(currentUser.getEmail());
 
-        //Intent used for first time registered users
-        enteredFullName = getIntent().getStringExtra("FullName");
-        displayFullName.setText(enteredFullName);
-        displayFullName.setText(enteredFullName);
+        if(displayFullName.equals("Welcome"))
+        {
+            //Intent used for first time registered users
+            enteredFullName = getIntent().getStringExtra("FullName");
+            displayFullName.setText(enteredFullName);
+            displayFullName.setText(enteredFullName);
+        }
+
 
         final Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
@@ -129,6 +133,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 {
                     try
                     {
+                        displayFullName.setText(userProfile.getFullName());
                         fullNameET.setText(userProfile.getFullName());
                         dateOfBirthET.setText(userProfile.getDateOfBirth());
                         emailET.setText(userProfile.getEmailAddress());
