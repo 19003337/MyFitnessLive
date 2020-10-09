@@ -41,7 +41,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
-    String unitsMeasured, fullName, gender, dateOfBirth, emailAddress;
+    String unitsMeasured, fullName, gender, dateOfBirth, emailAddress, enteredFullName;
     Double height, startingWeight;
     TextView displayFullName, displayEmailAddress, heightUnit, weightUnit;
     EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
@@ -77,6 +77,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         displayEmailAddress.setText(currentUser.getEmail());
         emailET.setText(currentUser.getEmail());
 
+        //Intent used for first time registered users
+        enteredFullName = getIntent().getStringExtra("FullName");
+        displayFullName.setText(enteredFullName);
+        displayFullName.setText(enteredFullName);
+
         final Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
         adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -95,7 +100,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
 
                 DatePickerDialog dialog = new DatePickerDialog(Profile.this,
                         android.R.style.Theme_Light_Panel, mDateSetListener, year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
         });

@@ -59,7 +59,7 @@ public class SignUp extends AppCompatActivity
             {
                 try
                 {
-                    String enteredFullName = fullName.getText().toString().trim();
+                    final String enteredFullName = fullName.getText().toString().trim();
                     String enteredEmail = email.getText().toString().trim();
                     String enteredPassword = password.getText().toString().trim();
                     String enteredPasswordConfirmation = confirmPassword.getText().toString().trim();
@@ -84,6 +84,7 @@ public class SignUp extends AppCompatActivity
                                                     Toast.LENGTH_SHORT).show();
 
                                             Intent openNewActivity = new Intent(SignUp.this, Profile.class);
+                                            openNewActivity.putExtra("FullName", enteredFullName);
                                             startActivity(openNewActivity);
                                         }
 
