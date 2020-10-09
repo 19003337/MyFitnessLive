@@ -22,7 +22,7 @@ tools:context=".Profile">
 
 
 <LinearLayout
-    android:id="@+id/linearLayout4"
+    android:id="@+id/linearLayout_UserNameAndEmail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"

@@ -114,6 +114,5 @@ public class GoalsScreen extends AppCompatActivity
                 }
             }
         });
-
     }
 }

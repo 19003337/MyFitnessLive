@@ -141,7 +141,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
 
-
+                        //set selected unitMeasured
                         if (userProfile.getUnitsMeasured().equals("Metric"))
                         {
                             spinnerUnits.setSelection(0);
@@ -151,6 +151,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                             spinnerUnits.setSelection(1);
                         }
 
+                        //set gender
                         if(userProfile.getGender().equals("Female"))
                         {
                             ((RadioButton)radioSexGroup.findViewById(R.id.radioButton_Female)).setChecked(true);
@@ -182,7 +183,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
 
-
+        //save and update profile
         save.setOnClickListener(new View.OnClickListener()
         {
             @Override

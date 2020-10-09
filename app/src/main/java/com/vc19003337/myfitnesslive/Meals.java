@@ -6,9 +6,10 @@ import java.util.Date;
 
 public class Meals
 {
-    Date entryDate;
     Image mealPhoto;
-    String title;
+    String entryDate;
+    String mealType;
+    String description;
     double calories;
     double protein;
     double fat;
@@ -18,11 +19,19 @@ public class Meals
     double sodium;
     double potassium;
 
-    public Meals(Date entryDate, Image mealPhoto, String title, double calories, double protein, double fat, double carbohydrates, double cholesterol, double fiber, double sodium, double potassium)
+    public Meals()
     {
-        this.entryDate = entryDate;
+        //Used for data retrieval
+    }
+
+    public Meals(Image mealPhoto, String entryDate, String mealType, String description, double calories,
+                 double protein, double fat, double carbohydrates, double cholesterol, double fiber, double sodium,
+                 double potassium)
+    {
         this.mealPhoto = mealPhoto;
-        this.title = title;
+        this.entryDate = entryDate;
+        this.mealType = mealType;
+        this.description = description;
         this.calories = calories;
         this.protein = protein;
         this.fat = fat;
@@ -33,113 +42,86 @@ public class Meals
         this.potassium = potassium;
     }
 
-    public Date getEntryDate()
-    {
-        return entryDate;
+    public Image getMealPhoto() { return mealPhoto; }
+
+    public void setMealPhoto(Image mealPhoto) { this.mealPhoto = mealPhoto; }
+
+    public String getEntryDate() { return entryDate; }
+
+    public void setEntryDate(String entryDate) { this.entryDate = entryDate; }
+
+    public String getMealType() { return mealType; }
+
+    public void setMealType(String mealType) { this.mealType = mealType; }
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setEntryDate(Date entryDate)
-    {
-        this.entryDate = entryDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Image getMealPhoto()
-    {
-        return mealPhoto;
-    }
-
-    public void setMealPhoto(Image mealPhoto)
-    {
-        this.mealPhoto = mealPhoto;
-    }
-
-    public String getTitle()
-    {
-        return title;
-    }
-
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
-    public double getCalories()
-    {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(double calories)
-    {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 
-    public double getProtein()
-    {
+    public double getProtein() {
         return protein;
     }
 
-    public void setProtein(double protein)
-    {
-        this.protein = protein;
-    }
+    public void setProtein(double protein) { this.protein = protein; }
 
-    public double getFat()
-    {
+    public double getFat() {
         return fat;
     }
 
-    public void setFat(double fat)
-    {
+    public void setFat(double fat) {
         this.fat = fat;
     }
 
-    public double getCarbohydrates()
-    {
+    public double getCarbohydrates() {
         return carbohydrates;
     }
 
-    public void setCarbohydrates(double carbohydrates)
-    {
+    public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
 
-    public double getCholesterol()
-    {
+    public double getCholesterol() {
         return cholesterol;
     }
 
-    public void setCholesterol(double cholesterol)
-    {
+    public void setCholesterol(double cholesterol) {
         this.cholesterol = cholesterol;
     }
 
-    public double getFiber()
-    {
+    public double getFiber() {
         return fiber;
     }
 
-    public void setFiber(double fiber)
-    {
+    public void setFiber(double fiber) {
         this.fiber = fiber;
     }
 
-    public double getSodium()
-    {
+    public double getSodium() {
         return sodium;
     }
 
-    public void setSodium(double sodium)
-    {
+    public void setSodium(double sodium) {
         this.sodium = sodium;
     }
 
-    public double getPotassium()
-    {
+    public double getPotassium() {
         return potassium;
     }
 
-    public void setPotassium(double potassium)
-    {
+    public void setPotassium(double potassium) {
         this.potassium = potassium;
     }
+
 }
