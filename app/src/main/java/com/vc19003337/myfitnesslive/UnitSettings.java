@@ -2,18 +2,24 @@ package com.vc19003337.myfitnesslive;
 
 public class UnitSettings
 {
+    String unitSetting;
     String weightUnit;
     String heightUnit;
-    String energyUnit;
-    String waterUnit;
+    //String energyUnit;
+    //String waterUnit;
 
-    public UnitSettings(String weightUnit, String heightUnit, String energyUnit, String waterUnit)
+
+
+    public UnitSettings(String unitSetting, String weightUnit, String heightUnit)
     {
+        this.unitSetting = unitSetting;
         this.weightUnit = weightUnit;
         this.heightUnit = heightUnit;
-        this.energyUnit = energyUnit;
-        this.waterUnit = waterUnit;
     }
+
+    public String getUnitSetting() { return unitSetting; }
+
+    public void setUnitSetting(String unitSetting) { this.unitSetting = unitSetting; }
 
     public String getWeightUnit()
     {
@@ -35,23 +41,5 @@ public class UnitSettings
         this.heightUnit = heightUnit;
     }
 
-    public String getEnergyUnit()
-    {
-        return energyUnit;
-    }
 
-    public void setEnergyUnit(String energyUnit)
-    {
-        this.energyUnit = energyUnit;
-    }
-
-    public String getWaterUnit()
-    {
-        return waterUnit;
-    }
-
-    public void setWaterUnit(String waterUnit)
-    {
-        this.waterUnit = waterUnit;
-    }
 }

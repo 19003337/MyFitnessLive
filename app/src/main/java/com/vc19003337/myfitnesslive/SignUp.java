@@ -68,36 +68,44 @@ public class SignUp extends AppCompatActivity
                     //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     //myRef.child("Login").setValue(logins);
 
-                    mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        myRef.push().setValue(logins);
-                                        Toast.makeText(SignUp.this, "User "
-                                                        + mAuth.getCurrentUser().getEmail() + "successfully registered. Please setup your profile.",
-                                                Toast.LENGTH_SHORT).show();
-
-                                        Intent openNewActivity = new Intent(SignUp.this, Profile.class);
-                                        startActivity(openNewActivity);
-                                    }
-
-                                    else
-                                    {
-                                        Toast.makeText(SignUp.this, "Error! Not registered",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }).addOnFailureListener(new OnFailureListener()
+                    if (enteredPassword == enteredPasswordConfirmation)
                     {
-                        @Override
-                        public void onFailure(@NonNull Exception e)
+                        mAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                                {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task)
+                                    {
+                                        if (task.isSuccessful())
+                                        {
+                                            myRef.push().setValue(logins);
+                                            Toast.makeText(SignUp.this, "User "
+                                                            + mAuth.getCurrentUser().getEmail() + "successfully registered. Please setup your profile.",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            Intent openNewActivity = new Intent(SignUp.this, Profile.class);
+                                            startActivity(openNewActivity);
+                                        }
+
+                                        else
+                                        {
+                                            Toast.makeText(SignUp.this, "Error! Not registered",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }).addOnFailureListener(new OnFailureListener()
                         {
-                            Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(@NonNull Exception e)
+                            {
+                                Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Toast.makeText(SignUp.this, "Password and Password Confirmation entered do not match.", Toast.LENGTH_LONG).show();
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -126,7 +126,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     userProfile = profileValues.getValue(UserProfile.class);
                 }
 
-
                 if (userProfile != null)
                 {
                     try
@@ -166,7 +165,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
 
             @Override

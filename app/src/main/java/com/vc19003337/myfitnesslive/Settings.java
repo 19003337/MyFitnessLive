@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    String weightUnit, heightUnit, energyUnit, waterUnit;
+    String unitsMeasured, weightUnit, heightUnit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -19,29 +19,13 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Spinner spinnerWeight = findViewById(R.id.spinner_Weight);
-        ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.weightUnits, android.R.layout.simple_spinner_item);
-        adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerWeight.setAdapter(adapterW);
-        spinnerWeight.setOnItemSelectedListener(this);
 
-        Spinner spinnerHeight = findViewById(R.id.spinner_Height);
+        Spinner spinnerHeight = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterH = ArrayAdapter.createFromResource(this, R.array.heightUnits, android.R.layout.simple_spinner_item);
         adapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHeight.setAdapter(adapterH);
         spinnerHeight.setOnItemSelectedListener(this);
 
-        Spinner spinnerEnergy = findViewById(R.id.spinner_Energy);
-        ArrayAdapter<CharSequence> adapterE = ArrayAdapter.createFromResource(this, R.array.energyUnits, android.R.layout.simple_spinner_item);
-        adapterE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEnergy.setAdapter(adapterE);
-        spinnerEnergy.setOnItemSelectedListener(this);
-
-        Spinner spinnerWater = findViewById(R.id.spinner_Water);
-        ArrayAdapter<CharSequence> adapterWT = ArrayAdapter.createFromResource(this, R.array.waterUnits, android.R.layout.simple_spinner_item);
-        adapterWT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerWater.setAdapter(adapterWT);
-        spinnerWater.setOnItemSelectedListener(this);
     }
 
     @Override

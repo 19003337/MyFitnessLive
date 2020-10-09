@@ -112,9 +112,13 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
         if (currentUser != null)
         {
-           // Toast.makeText(MainActivity.this, "You are already logged in " + currentUser.getEmail(),
-                    //Toast.LENGTH_LONG).show();
-            mAuth.signOut();
+            Toast.makeText(MainActivity.this, "You are already logged in " + currentUser.getEmail(),
+                    Toast.LENGTH_LONG).show();
+
+            Intent openNewActivity = new Intent(MainActivity.this, HomeScreen.class);
+            startActivity(openNewActivity);
+
+            //mAuth.signOut();
         }
     }
 }
