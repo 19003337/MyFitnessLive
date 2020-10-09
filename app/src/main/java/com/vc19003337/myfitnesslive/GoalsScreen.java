@@ -28,9 +28,8 @@ public class GoalsScreen extends AppCompatActivity
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
-    Double goalWeight, startingWeight, currentWeight;
+    Double goalWeight;
     Integer dailyCalorieIntake;
-    TextView startingWeightTV, currentWeightTV;
     EditText goalWeightET, dailyCalorieIntakeET;
     Button save;
     Goals goals;
