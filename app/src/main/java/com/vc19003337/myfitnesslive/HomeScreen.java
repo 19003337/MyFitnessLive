@@ -36,7 +36,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     NavigationView navigationView;
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
-    String targetCalories;
+    //String dailyCalorieIntake, unitsMeasured;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +45,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_home_screen);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        //Intent used for first time registered users
+        //unitsMeasured = getIntent().getStringExtra("UnitsMeasured");
+        //dailyCalorieIntake = getIntent().getStringExtra("DailyCalorieIntake");
 
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);

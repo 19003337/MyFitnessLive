@@ -5,8 +5,6 @@ public class UnitSettings
     String unitSetting;
     String weightUnit;
     String heightUnit;
-    //String energyUnit;
-    //String waterUnit;
 
     public UnitSettings()
     {

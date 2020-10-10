@@ -126,10 +126,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
+                /*
                 for (DataSnapshot profileValues : snapshot.getChildren())
                 {
                     userProfile = profileValues.getValue(UserProfile.class);
                 }
+                */
+
+                userProfile = snapshot.getValue(UserProfile.class);
 
                 if (userProfile != null)
                 {

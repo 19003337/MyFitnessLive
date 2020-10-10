@@ -3,6 +3,7 @@ package com.vc19003337.myfitnesslive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class GoalsScreen extends AppCompatActivity
     EditText goalWeightET, dailyCalorieIntakeET;
     TextView goalWeightTV, dailyCalorieIntakeTV, goalsHeadingTV;
     Button save;
-    Goals goals;
+    Goals goals, goalsUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,21 +54,26 @@ public class GoalsScreen extends AppCompatActivity
         goalsHeadingTV = findViewById(R.id.tv_GoalsHeading);
         save = findViewById(R.id.btn_save);
 
+
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
+                /*
                 for (DataSnapshot goalValues : snapshot.getChildren())
                 {
-                    goals = goalValues.getValue(Goals.class);
+                    goalsUpload = goalValues.getValue(Goals.class);
                 }
+                 */
 
-                if (goals != null)
+                goalsUpload = snapshot.getValue(Goals.class);
+
+                if (goalsUpload != null)
                 {
                     //goalWeightET.setText(DecimalFormat.getNumberInstance().format(goals.getGoalWeight()));
-                    goalWeightET.setText(String.valueOf(goals.getGoalWeight()));
-                    dailyCalorieIntakeET.setText(String.valueOf(goals.getDailyCalorieIntake()));
+                    goalWeightET.setText(String.valueOf(goalsUpload.getGoalWeight()));
+                    dailyCalorieIntakeET.setText(String.valueOf(goalsUpload.getDailyCalorieIntake()));
                 }
                 else{
                     Toast.makeText(GoalsScreen.this, "Please set your goals", Toast.LENGTH_SHORT).show();
@@ -80,7 +86,6 @@ public class GoalsScreen extends AppCompatActivity
                 Toast.makeText(GoalsScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -98,6 +103,11 @@ public class GoalsScreen extends AppCompatActivity
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(GoalsScreen.this, "Goals saved successfully", Toast.LENGTH_SHORT).show();
+
+                                    //Intent openNewActivity = new Intent(GoalsScreen.this, HomeScreen.class);
+                                    //openNewActivity.putExtra("DailyCalorieIntake", dailyCalorieIntake);
+                                    //startActivity(openNewActivity);
+
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener()

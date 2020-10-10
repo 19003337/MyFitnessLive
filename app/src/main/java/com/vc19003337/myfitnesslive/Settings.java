@@ -55,16 +55,22 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         spinnerUnitsMeasured.setAdapter(adapter);
         spinnerUnitsMeasured.setOnItemSelectedListener(this);
 
+
         myRef.child("Settings").addValueEventListener(new ValueEventListener()
         {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
+                /*
                 for (DataSnapshot settingsValues : snapshot.getChildren())
                 {
                     unitSettings = settingsValues.getValue(UnitSettings.class);
                 }
+
+                 */
+
+                unitSettings = snapshot.getValue(UnitSettings.class);
 
                 if (unitSettings != null)
                 {
@@ -79,8 +85,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                             spinnerUnitsMeasured.setSelection(1);
                         }
 
-                        weightUnitTV.setText(unitSettings.getWeightUnit());
-                        heightUnitTV.setText(unitSettings.getHeightUnit());
+                        weightUnitTV.setText(unitSettings.getWeightUnit().toString());
+                        heightUnitTV.setText(unitSettings.getHeightUnit().toString());
                     }
                     catch (Exception ex)
                     {
@@ -103,6 +109,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
 
+
         save.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -121,6 +128,9 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Settings.this, "Settings saved successfully", Toast.LENGTH_SHORT).show();
+                                    //Intent openNewActivity = new Intent(Settings.this, HomeScreen.class);
+                                    //openNewActivity.putExtra("UnitsMeasured", unitsMeasured);
+                                    //startActivity(openNewActivity);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener()
@@ -132,8 +142,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                                 }
                             });
 
-                    //Intent openNewActivity = new Intent(Settings.this, HomeScreen.class);
-                    //startActivity(openNewActivity);
                 }
                 catch (Exception ex)
                 {

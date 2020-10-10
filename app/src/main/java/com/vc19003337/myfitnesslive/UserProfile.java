@@ -10,8 +10,6 @@ public class UserProfile
     String dateOfBirth;
     double height;
     double startingWeight;
-    //double goalWeight;
-    //int dailyCalorieIntake;
     String unitsMeasured;
 
     public UserProfile()
