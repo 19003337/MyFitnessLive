@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class Profile extends AppCompatActivity implements AdapterView.OnItemSelectedListener
@@ -134,29 +135,33 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                 {
                     try
                     {
-                        displayFullName.setText(userProfile.getFullName());
-                        fullNameET.setText(userProfile.getFullName());
-                        dateOfBirthET.setText(userProfile.getDateOfBirth());
-                        emailET.setText(userProfile.getEmailAddress());
+                        displayFullName.setText(userProfile.getFullName().toString());
+                        fullNameET.setText(userProfile.getFullName().toString());
+                        dateOfBirthET.setText(userProfile.getDateOfBirth().toString());
+                        emailET.setText(userProfile.getEmailAddress().toString());
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
+                        //startingWeightET.setText(DecimalFormat.getNumberInstance().format(userProfile.getStartingWeight()));
+                        unitsMeasured = userProfile.getUnitsMeasured().toString();
+                        gender = userProfile.getGender().toString();
 
                         //set selected unitMeasured
-                        if (userProfile.getUnitsMeasured().equals("Metric"))
+                        if (unitsMeasured.equals("Metric"))
                         {
                             spinnerUnits.setSelection(0);
                         }
-                        else if (userProfile.getUnitsMeasured().equals("Imperial"))
+
+                        if (unitsMeasured.equals("Imperial"))
                         {
                             spinnerUnits.setSelection(1);
                         }
 
                         //set gender
-                        if(userProfile.getGender().equals("Female"))
+                        if(gender.equals("Female"))
                         {
                             ((RadioButton)radioSexGroup.findViewById(R.id.radioButton_Female)).setChecked(true);
                         }
-                        else if (userProfile.getGender().equals("Male"))
+                        else if (gender.equals("Male"))
                         {
                             ((RadioButton)radioSexGroup.findViewById(R.id.radioButton_Male)).setChecked(true);
                         }

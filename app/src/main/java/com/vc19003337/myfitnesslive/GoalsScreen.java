@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+
 public class GoalsScreen extends AppCompatActivity
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -63,6 +65,7 @@ public class GoalsScreen extends AppCompatActivity
 
                 if (goals != null)
                 {
+                    //goalWeightET.setText(DecimalFormat.getNumberInstance().format(goals.getGoalWeight()));
                     goalWeightET.setText(String.valueOf(goals.getGoalWeight()));
                     dailyCalorieIntakeET.setText(String.valueOf(goals.getDailyCalorieIntake()));
                 }
