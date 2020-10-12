@@ -3,6 +3,7 @@ package com.vc19003337.myfitnesslive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,9 +35,10 @@ public class GoalsScreen extends AppCompatActivity
     Double goalWeight;
     Integer dailyCalorieIntake;
     EditText goalWeightET, dailyCalorieIntakeET;
-    TextView goalWeightTV, dailyCalorieIntakeTV, goalsHeadingTV;
+    TextView goalWeightTV, dailyCalorieIntakeTV, goalsHeadingTV, weightUnit;
     Button save;
     Goals goals, goalsUpload;
+    UnitSettings unitSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +54,7 @@ public class GoalsScreen extends AppCompatActivity
         goalWeightTV = findViewById(R.id.tv_GoalWeight);
         dailyCalorieIntakeTV = findViewById(R.id.tv_DailyCalorieIntake);
         goalsHeadingTV = findViewById(R.id.tv_GoalsHeading);
+        weightUnit = findViewById(R.id.tv_WeightUnit);
         save = findViewById(R.id.btn_save);
 
 
@@ -60,13 +63,6 @@ public class GoalsScreen extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                /*
-                for (DataSnapshot goalValues : snapshot.getChildren())
-                {
-                    goalsUpload = goalValues.getValue(Goals.class);
-                }
-                 */
-
                 goalsUpload = snapshot.getValue(Goals.class);
 
                 if (goalsUpload != null)
@@ -77,6 +73,47 @@ public class GoalsScreen extends AppCompatActivity
                 }
                 else{
                     Toast.makeText(GoalsScreen.this, "Please set your goals", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(GoalsScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        myRef.child("Settings").addValueEventListener(new ValueEventListener()
+        {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                unitSettings = snapshot.getValue(UnitSettings.class);
+
+                if (unitSettings != null)
+                {
+                    try
+                    {
+                        if (unitSettings.getUnitSetting().equals("Metric"))
+                        {
+                            weightUnit.setText("kgs");
+                        }
+                        if (unitSettings.getUnitSetting().equals("Imperial"))
+                        {
+                            weightUnit.setText("pounds");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Toast.makeText(GoalsScreen.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    //If unitSetting has not been selected
+                    weightUnit.setText("kgs");
                 }
             }
 

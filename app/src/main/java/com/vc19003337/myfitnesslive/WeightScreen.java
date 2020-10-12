@@ -3,6 +3,7 @@ package com.vc19003337.myfitnesslive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -34,15 +37,18 @@ public class WeightScreen extends AppCompatActivity
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    List<String> weightChangesList;
+    ArrayAdapter adapter;
 
     Calendar calendar;
     Double currentWeight;
     String dateToday;
-    TextView displayDateToday;
+    TextView displayDateToday, weightUnit;
     EditText currentWeightET;
     Button save;
     Weight weight;
-    ListView weightChanges;
+    ListView weightChangesLV;
+    UnitSettings unitSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,10 +64,77 @@ public class WeightScreen extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         currentWeightET = findViewById(R.id.et_weightToday);
         save = findViewById(R.id.btn_save);
-        weightChanges = findViewById(R.id.lv_WeightChanges);
+        weightChangesLV = findViewById(R.id.lv_WeightChanges);
+        weightUnit = findViewById(R.id.tv_WeightUnit);
+
+        myRef.child("WeightChanges").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                weight = new Weight();
+                weightChangesList = new ArrayList<String>();
+                for (DataSnapshot weightValues : snapshot.getChildren())
+                {
+                    weight = weightValues.getValue(Weight.class);
+                    weightChangesList.add(weight.ToString());
+                }
+
+                adapter = new ArrayAdapter(WeightScreen.this, android.R.layout.simple_list_item_1, weightChangesList);
+                //Collections.sort(weightChangesList);
+                weightChangesLV.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(WeightScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        myRef.child("Settings").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                unitSettings = snapshot.getValue(UnitSettings.class);
+
+                if (unitSettings != null)
+                {
+                    try
+                    {
+                        if (unitSettings.getUnitSetting().equals("Metric"))
+                        {
+                            weightUnit.setText("kgs");
+                        }
+                        if (unitSettings.getUnitSetting().equals("Imperial"))
+                        {
+                            weightUnit.setText("pounds");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Toast.makeText(WeightScreen.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    //If unitSetting has not been selected
+                    weightUnit.setText("kgs");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(WeightScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener()
         {

@@ -81,22 +81,35 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/et_goalWeight"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
-                android:hint="Enter your goal weight"
                 android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold">
+                android:textStyle="bold"/>
 
-            </EditText>
+            <TextView
+                android:id="@+id/tv_WeightUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="kgs"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_CaloriesHeading"
@@ -123,20 +136,35 @@
 
             </TextView>
 
-            <EditText
-                android:id="@+id/et_dailyCalorieIntake"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:hint="Enter your daily calorie intake target"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_dailyCalorieIntake"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/marcellus"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_Calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/marcellus"
+                    android:text="kcal"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_save"

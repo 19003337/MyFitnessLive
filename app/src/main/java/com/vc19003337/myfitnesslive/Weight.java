@@ -38,10 +38,8 @@ public class Weight
         this.currentWeight = currentWeight;
     }
 
-    @Override
-    public String toString()
+    public String ToString()
     {
-        return "Entry Date: " + entryDate + "/n" +
-                "Current Weight: " + currentWeight;
+        return entryDate + "                                 " + currentWeight;
     }
 }

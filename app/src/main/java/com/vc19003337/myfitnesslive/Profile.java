@@ -228,8 +228,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                 }
                             });
 
-                    Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
-                    startActivity(openNewActivity);
+                    //Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                    //startActivity(openNewActivity);
                 }
                 catch (Exception ex)
                 {
@@ -255,7 +255,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         else
         {
             heightUnit.setText("cm");
-            weightUnit.setText("kg");
+            weightUnit.setText("kgs");
         }
     }
 

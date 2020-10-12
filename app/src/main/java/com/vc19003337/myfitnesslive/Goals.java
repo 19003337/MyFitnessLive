@@ -36,8 +36,7 @@ public class Goals
         this.dailyCalorieIntake = dailyCalorieIntake;
     }
 
-    @Override
-    public String toString()
+    public String ToString()
     {
         return "Goals: " + "/n" +
                 "GoalWeight = " + goalWeight + "/n" +
