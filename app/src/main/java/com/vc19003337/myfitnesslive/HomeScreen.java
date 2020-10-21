@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,13 +20,16 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("profiles");
+    //DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
@@ -36,7 +40,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     NavigationView navigationView;
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
-    //String dailyCalorieIntake, unitsMeasured;
+    //String dailyCalorieIntake;
+    Goals goals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,9 +50,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_home_screen);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        //Intent used for first time registered users
-        //unitsMeasured = getIntent().getStringExtra("UnitsMeasured");
-        //dailyCalorieIntake = getIntent().getStringExtra("DailyCalorieIntake");
+        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);
@@ -72,6 +75,29 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         drawerLayout.addDrawerListener(toggleOnAndOff);
         toggleOnAndOff.syncState();
+
+        myRef.child("Goals").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                goals = snapshot.getValue(Goals.class);
+                if(goals != null)
+                {
+                    goalCalories.setText(String.valueOf(goals.getDailyCalorieIntake()) + " kcal");
+                }
+                else
+                {
+                    goalCalories.setText("Goals not set");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(HomeScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
