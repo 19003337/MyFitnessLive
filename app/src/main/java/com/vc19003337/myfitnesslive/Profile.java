@@ -51,6 +51,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     DatePickerDialog.OnDateSetListener mDateSetListener;
     Button save;
     UserProfile userProfile;
+    UnitSettings unitSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -86,12 +87,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             fullNameET.setText(enteredFullName);
         }
 
-
+        /*
         final Spinner spinnerUnits = findViewById(R.id.spinner_UnitsMeasured);
         ArrayAdapter<CharSequence> adapterW = ArrayAdapter.createFromResource(this, R.array.unitsMeasured, android.R.layout.simple_spinner_item);
         adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnits.setAdapter(adapterW);
         spinnerUnits.setOnItemSelectedListener(this);
+
+         */
 
         dateOfBirthET.setOnClickListener(new View.OnClickListener()
         {
@@ -146,10 +149,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
                         //startingWeightET.setText(DecimalFormat.getNumberInstance().format(userProfile.getStartingWeight()));
-                        unitsMeasured = userProfile.getUnitsMeasured().toString();
+                        //unitsMeasured = userProfile.getUnitsMeasured().toString();
                         gender = userProfile.getGender().toString();
 
                         //set selected unitMeasured
+                        /*
                         if (unitsMeasured.equals("Metric"))
                         {
                             spinnerUnits.setSelection(0);
@@ -159,6 +163,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         {
                             spinnerUnits.setSelection(1);
                         }
+
+                         */
 
                         //set gender
                         if(gender.equals("Female"))
@@ -192,6 +198,48 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             }
         });
 
+        myRef.child("Settings").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                unitSettings = snapshot.getValue(UnitSettings.class);
+
+                if (unitSettings != null)
+                {
+                    try
+                    {
+                        if (unitSettings.getUnitSetting().equals("Metric"))
+                        {
+                            heightUnit.setText("cm");
+                            weightUnit.setText("kgs");
+                        }
+                        if (unitSettings.getUnitSetting().equals("Imperial"))
+                        {
+                            heightUnit.setText("inches");
+                            weightUnit.setText("pounds");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Toast.makeText(Profile.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    //If unitSetting has not been selected
+                    weightUnit.setText("kgs");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(Profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //save and update profile
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -209,7 +257,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     height = Double.parseDouble(heightET.getText().toString().trim());
                     startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
 
-                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight, unitsMeasured);
+                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight);
 
                     DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     myRef.child("Profile").setValue(userProfile)

@@ -10,7 +10,7 @@ public class UserProfile
     String dateOfBirth;
     double height;
     double startingWeight;
-    String unitsMeasured;
+    //String unitsMeasured;
 
     public UserProfile()
     {
@@ -18,7 +18,7 @@ public class UserProfile
     }
 
     public UserProfile(String fullName, String emailAddress, String gender, String dateOfBirth,
-                       double height, double startingWeight, String unitsMeasured)
+                       double height, double startingWeight)
     {
         this.fullName = fullName;
         this.emailAddress = emailAddress;
@@ -26,7 +26,7 @@ public class UserProfile
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.startingWeight = startingWeight;
-        this.unitsMeasured = unitsMeasured;
+        //this.unitsMeasured = unitsMeasured;
     }
 
     public String getFullName()
@@ -89,14 +89,6 @@ public class UserProfile
         this.emailAddress = emailAddress;
     }
 
-    public String getUnitsMeasured() {
-        return unitsMeasured;
-    }
-
-    public void setUnitsMeasured(String unitsMeasured) {
-        this.unitsMeasured = unitsMeasured;
-    }
-
     public String ToString()
     {
         return "Full Name: " + fullName + "/n"
@@ -104,7 +96,7 @@ public class UserProfile
                 + "Gender: " + gender + "/n"
                 + "Date of Birth: " + dateOfBirth+ "/n"
                 + "Height: " + height + "/n"
-                + "Starting Weight: " + startingWeight + "/n"
-                + "Units Measured: " + unitsMeasured;
+                + "Starting Weight: " + startingWeight;
+                //+ "Units Measured: " + unitsMeasured;
     }
 }
