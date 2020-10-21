@@ -27,8 +27,8 @@
         <ImageView
             android:id="@+id/imageView_HomeScreen"
             android:layout_width="match_parent"
-            android:layout_height="208dp"
-            app:srcCompat="@drawable/home"/>
+            android:layout_height="220dp"
+            app:srcCompat="@drawable/homelarge"/>
 
         <TextView
             android:id="@+id/tv_CaloriesRemaining"
@@ -39,16 +39,15 @@
             android:text="721 calories remaining"
             android:textColor="@color/blue"
             android:textSize="18dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:textStyle="bold">
-
         </TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="5dp">
 
             <Button
                 android:id="@+id/btn_TargetCalories"
@@ -85,54 +84,51 @@
         <ImageView
             android:id="@+id/imageView_LatestMealPhoto"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="320dp"
             app:srcCompat="@drawable/lunchsmall">
         </ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_LatestMeal"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="09/09/2020 - Lunch"
-                android:fontFamily="@font/marcellus"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold">
-            </TextView>
+                android:fontFamily="@font/marcellus"
+                android:gravity="center"
+                android:text="09/09/2020 - Lunch"
+                android:textAlignment="center"
+
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/btn_Camera"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/ic_baseline_photo_camera_24"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bluecameral" />
 
             <TextView
                 android:id="@+id/tv_LatestMealDescription"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Prawn Salad"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:gravity="center"
+                android:text="Prawn Salad"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="15dp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

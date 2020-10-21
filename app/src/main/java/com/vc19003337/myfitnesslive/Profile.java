@@ -163,7 +163,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         {
                             spinnerUnits.setSelection(1);
                         }
-
                          */
 
                         //set gender
