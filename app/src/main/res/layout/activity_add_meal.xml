@@ -121,7 +121,7 @@
                 android:textSize="17dp" />
 
             <Spinner
-                android:id="@+id/spinner_MealType"
+                android:id="@+id/spinner_MealTypes"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="90dp"
@@ -136,7 +136,7 @@
         </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_Description"
+                android:id="@+id/tv_MealDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -147,7 +147,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_description"
+                android:id="@+id/et_mealDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"

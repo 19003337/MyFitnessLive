@@ -32,7 +32,7 @@
         <item>Imperial</item>
     </string-array>
 
-    <string-array name="mealType">
+    <string-array name="mealTypes">
         <item>Breakfast</item>
         <item>Lunch</item>
         <item>Dinner</item>
