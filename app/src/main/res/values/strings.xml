@@ -32,6 +32,13 @@
         <item>Imperial</item>
     </string-array>
 
+    <string-array name="mealType">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack/Other</item>
+    </string-array>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

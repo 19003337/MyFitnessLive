@@ -41,6 +41,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
     //String dailyCalorieIntake;
+    Integer calculatedCalorieRemaining;
     Goals goals;
 
     @Override
@@ -76,6 +77,16 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         drawerLayout.addDrawerListener(toggleOnAndOff);
         toggleOnAndOff.syncState();
 
+        camera.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(HomeScreen.this, AddMeal.class);
+                startActivity(i);
+            }
+        });
+
         myRef.child("Goals").addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -85,10 +96,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 if(goals != null)
                 {
                     goalCalories.setText(String.valueOf(goals.getDailyCalorieIntake()) + " kcal");
+                    calculatedCalorieRemaining = goals.getDailyCalorieIntake();
+                    caloriesRemaining.setText(calculatedCalorieRemaining.toString() + "  calories remaining");
                 }
                 else
                 {
-                    goalCalories.setText("Goals not set");
+                    goalCalories.setText("0 kcal");
+                    caloriesRemaining.setText("Goals not set");
                 }
             }
 
