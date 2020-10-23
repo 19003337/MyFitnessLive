@@ -54,7 +54,6 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
     StorageReference mStorageRef;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
@@ -76,7 +75,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_add_meal);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
         calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -141,7 +140,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                     potassium = Double.parseDouble(potassiumET.getText().toString().trim());
 
                     //StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
-                    final StorageReference image = mStorageRef.child("Photos" + imageName);
+                    final StorageReference image = mStorageRef.child("Photos/" + imageName);
 
                     //mStorageRef.child("Photos")
                     image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
@@ -156,7 +155,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                                     imageURL= uri.toString();
 
                                     meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
-                                    //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                                     myRef.child("Meals").push().setValue(meals)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
