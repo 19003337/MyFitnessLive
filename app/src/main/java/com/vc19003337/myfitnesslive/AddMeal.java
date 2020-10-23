@@ -54,11 +54,12 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //private StorageReference mStorageRef;
+    DatabaseReference myRef;
+    StorageReference mStorageRef;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     Calendar calendar;
-    String mealTypeSelected, dateToday, currentPhotoPath, mealDescription, imageURL;
+    String mealTypeSelected, dateToday, currentPhotoPath, mealDescription, imageName, imageURL;
     Double calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium;
     Image photoToUpload;
     ImageView photoToUploadIV;
@@ -75,8 +76,8 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_add_meal);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
-        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
+        myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
         calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateToday = dateFormat.format(calendar.getTime());
@@ -139,21 +140,23 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                     sodium = Double.parseDouble(sodiumET.getText().toString().trim());
                     potassium = Double.parseDouble(potassiumET.getText().toString().trim());
 
-                    final StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
+                    //StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
+                    final StorageReference image = mStorageRef.child("Photos" + imageName);
 
-                    mStorageRef.child("Photos").putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+                    //mStorageRef.child("Photos")
+                    image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                     {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                         {
-                            mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri)
                                 {
                                     imageURL= uri.toString();
 
                                     meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
-                                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                                    //DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                                     myRef.child("Meals").push().setValue(meals)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
@@ -274,6 +277,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
                 //currentPhotoPath = contentUri.getPath();
+                imageName = f.getName();
             }
         }
 
@@ -287,6 +291,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                 Log.d("tag", "onActivityRequest: Gallery Image Uri: " + imageFileName);
                 photoToUploadIV.setImageURI(contentUri);
                 //currentPhotoPath = contentUri.getPath();
+                imageName = imageFileName;
             }
         }
     }
