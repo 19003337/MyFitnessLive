@@ -29,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference myRef = database.getReference("profiles");
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
@@ -40,10 +39,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     NavigationView navigationView;
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
-    //String dailyCalorieIntake;
     Integer calculatedCalorieRemaining;
     Goals goals;
+    //UserProfile userProfile;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -57,11 +57,17 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
         caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
+        //displayFullName = findViewById(R.id.tv_FullName);
+        //displayEmailAddress = findViewById(R.id.tv_EmailAddress);
 
         camera = findViewById(R.id.btn_Camera);
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Set displayed text
+        //displayEmailAddress.setText(currentUser.getEmail());
+        //displayFullName.setText("New User");
 
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
@@ -113,6 +119,31 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+        /*
+        myRef.child("Profile").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                userProfile = snapshot.getValue(UserProfile.class);
+
+                if (userProfile != null)
+                {
+                    displayFullName.setText(userProfile.getFullName().toString());
+                    displayEmailAddress.setText(userProfile.getEmailAddress().toString());
+                }
+                else
+                {
+                    Toast.makeText(HomeScreen.this, "Please enter and save your profile details", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(HomeScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+         */
     }
 
     @Override

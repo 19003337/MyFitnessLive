@@ -22,33 +22,6 @@
         android:textSize="46dp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/tv_FullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/marcellus"
-        android:gravity="center"
-        android:text="Charmaine Dobbin"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:layout_marginBottom="5dp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tv_EmailAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/marcellus"
-        android:gravity="center"
-        android:text="19003337@vcconnect.co.za"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:layout_marginBottom="5dp">
-    </TextView>
 
 </LinearLayout>
 

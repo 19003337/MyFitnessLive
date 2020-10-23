@@ -93,7 +93,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         adapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnits.setAdapter(adapterW);
         spinnerUnits.setOnItemSelectedListener(this);
-
          */
 
         dateOfBirthET.setOnClickListener(new View.OnClickListener()
