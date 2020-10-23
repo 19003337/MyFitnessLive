@@ -361,7 +361,7 @@
                 android:textStyle="bold"/>
 
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/btn_Save"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
