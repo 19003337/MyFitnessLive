@@ -9,10 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
@@ -25,22 +27,31 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
-
+    Calendar calendar;
+    String dateToday;
     IntentHelper helper;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
     Button camera;
-    TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned;
+    TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned, latestMeal, latestMealDescription;
+    ImageView latestMealIV;
     Integer calculatedCalorieRemaining;
     Goals goals;
+    Meals meals;
     //UserProfile userProfile;
 
     @SuppressLint("SetTextI18n")
@@ -52,11 +63,17 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateToday = dateFormat.format(calendar.getTime());
 
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
         caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
+        latestMealIV = findViewById(R.id.imageView_MealPhoto);
+        latestMeal = findViewById(R.id.tv_LatestMeal);
+        latestMealDescription = findViewById(R.id.tv_LatestMealDescription);
         //displayFullName = findViewById(R.id.tv_FullName);
         //displayEmailAddress = findViewById(R.id.tv_EmailAddress);
 
@@ -119,21 +136,22 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        /*
-        myRef.child("Profile").addValueEventListener(new ValueEventListener() {
+        myRef.child("Meals").addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                userProfile = snapshot.getValue(UserProfile.class);
-
-                if (userProfile != null)
+                for (DataSnapshot mealsValues : snapshot.getChildren())
                 {
-                    displayFullName.setText(userProfile.getFullName().toString());
-                    displayEmailAddress.setText(userProfile.getEmailAddress().toString());
+                    meals = mealsValues.getValue(Meals.class);
                 }
-                else
+
+                if(meals != null && meals.entryDate.equals(dateToday))
                 {
-                    Toast.makeText(HomeScreen.this, "Please enter and save your profile details", Toast.LENGTH_SHORT).show();
+                    //latestMealIV.setImageURI(Uri.parse(meals.imageURL));
+                    //Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
+                    latestMeal.setText(meals.entryDate + " - " + meals.mealType);
+                    latestMealDescription.setText(meals.description);
                 }
             }
 
@@ -143,7 +161,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(HomeScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-         */
     }
 
     @Override

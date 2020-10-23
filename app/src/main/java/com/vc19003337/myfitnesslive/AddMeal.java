@@ -161,6 +161,8 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
+                                                    Intent openNewActivity = new Intent(AddMeal.this, HomeScreen.class);
+                                                    startActivity(openNewActivity);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener()
@@ -183,28 +185,6 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                         }
                     });
 
-                    //meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
-                    /*
-                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
-                    myRef.child("Meals").push().setValue(meals)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener()
-                            {
-                                @Override
-                                public void onFailure(@NonNull Exception e)
-                                {
-                                    Toast.makeText(AddMeal.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-                    //Intent openNewActivity = new Intent(AddMeal.this, HomeScreen.class);
-                    //startActivity(openNewActivity);
-                     */
                 }
                 catch (Exception ex)
                 {

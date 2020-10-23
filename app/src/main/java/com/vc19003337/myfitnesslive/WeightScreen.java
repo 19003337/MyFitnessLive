@@ -85,7 +85,7 @@ public class WeightScreen extends AppCompatActivity
                 }
 
                 adapter = new ArrayAdapter(WeightScreen.this, android.R.layout.simple_list_item_1, weightChangesList);
-                //Collections.sort(weightChangesList);
+                Collections.reverse(weightChangesList);
                 weightChangesLV.setAdapter(adapter);
             }
 
