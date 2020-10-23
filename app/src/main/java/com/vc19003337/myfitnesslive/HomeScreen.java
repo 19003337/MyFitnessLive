@@ -49,7 +49,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     Button camera;
     TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned, latestMeal, latestMealDescription;
     ImageView latestMealIV;
-    Integer calculatedCalorieRemaining;
+    Integer calculatedCaloriesRemaining;
+    Double calculatedCaloriesConsumed;
     Goals goals;
     Meals meals;
     //UserProfile userProfile;
@@ -67,11 +68,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateToday = dateFormat.format(calendar.getTime());
 
+        calculatedCaloriesConsumed = 0.0;
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
         caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
-        latestMealIV = findViewById(R.id.imageView_MealPhoto);
+        latestMealIV = findViewById(R.id.imageView_LatestMealPhoto);
         latestMeal = findViewById(R.id.tv_LatestMeal);
         latestMealDescription = findViewById(R.id.tv_LatestMealDescription);
         //displayFullName = findViewById(R.id.tv_FullName);
@@ -119,11 +121,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 if(goals != null)
                 {
                     goalCalories.setText(String.valueOf(goals.getDailyCalorieIntake()) + " kcal");
-                    calculatedCalorieRemaining = goals.getDailyCalorieIntake();
-                    caloriesRemaining.setText(calculatedCalorieRemaining.toString() + "  calories remaining");
+                    calculatedCaloriesRemaining = goals.getDailyCalorieIntake();
+                    caloriesRemaining.setText(calculatedCaloriesRemaining.toString() + " calories remaining");
                 }
                 else
                 {
+                    calculatedCaloriesRemaining = 0;
                     goalCalories.setText("0 kcal");
                     caloriesRemaining.setText("Goals not set");
                 }
@@ -144,14 +147,32 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 for (DataSnapshot mealsValues : snapshot.getChildren())
                 {
                     meals = mealsValues.getValue(Meals.class);
+
+                    if(meals.entryDate.equals(dateToday))
+                    {
+                        calculatedCaloriesConsumed += meals.calories;
+                    }
                 }
 
                 if(meals != null && meals.entryDate.equals(dateToday))
                 {
-                    //latestMealIV.setImageURI(Uri.parse(meals.imageURL));
-                    //Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
+                    Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
                     latestMeal.setText(meals.entryDate + " - " + meals.mealType);
                     latestMealDescription.setText(meals.description);
+                    caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
+
+                    if(calculatedCaloriesRemaining == 0)
+                    {
+                        caloriesRemaining.setText("Goals not set");
+                    }
+                    else{
+                        Double totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
+                        caloriesRemaining.setText(totalCaloriesRemaining.toString() + " calories remaining");
+                    }
+                }
+                else{
+                    latestMeal.setText("No meals saved!");
+                    latestMealDescription.setText("No meals saved!");
                 }
             }
 
