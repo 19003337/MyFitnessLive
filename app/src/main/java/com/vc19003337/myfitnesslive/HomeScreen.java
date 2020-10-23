@@ -172,7 +172,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 }
                 else{
                     latestMeal.setText("No meals saved!");
-                    latestMealDescription.setText("No meals saved!");
+                    latestMealDescription.setText("Press camera now!");
                 }
             }
 
