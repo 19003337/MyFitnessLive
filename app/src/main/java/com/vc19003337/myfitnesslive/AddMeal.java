@@ -27,14 +27,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,16 +54,19 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     Calendar calendar;
-    String mealTypeSelected, dateToday, mealDescription, currentPhotoPath;
+    String mealTypeSelected, dateToday, currentPhotoPath, mealDescription, imageURL;
+    Double calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium;
     Image photoToUpload;
     ImageView photoToUploadIV;
     TextView displayDateTodayTV;
     EditText mealDescriptionET, caloriesET, proteinET, fatET, carbohydratesET, cholesterolET, fiberET, sodiumET, potassiumET;
     Button saveBTN, cameraBTN, galleryBTN;
     Meals meals;
+    Uri contentUri, downloadUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,6 +76,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
         calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateToday = dateFormat.format(calendar.getTime());
@@ -118,7 +128,86 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view)
             {
+                try {
+                    mealDescription = mealDescriptionET.getText().toString().trim();
+                    calories = Double.parseDouble(caloriesET.getText().toString().trim());
+                    protein= Double.parseDouble(proteinET.getText().toString().trim());
+                    fat= Double.parseDouble(fatET.getText().toString().trim());
+                    carbohydrates = Double.parseDouble(carbohydratesET.getText().toString().trim());
+                    cholesterol = Double.parseDouble(cholesterolET.getText().toString().trim());
+                    fiber = Double.parseDouble(fiberET.getText().toString().trim());
+                    sodium = Double.parseDouble(sodiumET.getText().toString().trim());
+                    potassium = Double.parseDouble(potassiumET.getText().toString().trim());
 
+                    final StorageReference mStorageRef = FirebaseStorage.getInstance().getReference(mAuth.getCurrentUser().getUid());
+
+                    mStorageRef.child("Photos").putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+                    {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                        {
+                            mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri)
+                                {
+                                    imageURL= uri.toString();
+
+                                    meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
+                                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                                    myRef.child("Meals").push().setValue(meals)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener()
+                                            {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e)
+                                                {
+                                                    Toast.makeText(AddMeal.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener()
+                    {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            Toast.makeText(AddMeal.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    //meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
+                    /*
+                    DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
+                    myRef.child("Meals").push().setValue(meals)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener()
+                            {
+                                @Override
+                                public void onFailure(@NonNull Exception e)
+                                {
+                                    Toast.makeText(AddMeal.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                    //Intent openNewActivity = new Intent(AddMeal.this, HomeScreen.class);
+                    //startActivity(openNewActivity);
+                     */
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(AddMeal.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -181,9 +270,10 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                 Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
 
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                Uri contentUri = Uri.fromFile(f);
+                contentUri = Uri.fromFile(f);
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
+                //currentPhotoPath = contentUri.getPath();
             }
         }
 
@@ -191,11 +281,12 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
         {
             if(resultCode == Activity.RESULT_OK)
             {
-               Uri contentUri = data.getData();
+                contentUri = data.getData();
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
                 Log.d("tag", "onActivityRequest: Gallery Image Uri: " + imageFileName);
                 photoToUploadIV.setImageURI(contentUri);
+                //currentPhotoPath = contentUri.getPath();
             }
         }
     }

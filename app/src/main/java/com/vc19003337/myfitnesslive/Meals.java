@@ -6,7 +6,8 @@ import java.util.Date;
 
 public class Meals
 {
-    Image mealPhoto;
+    //Image mealPhoto;
+    String imageURL;
     String entryDate;
     String mealType;
     String description;
@@ -24,11 +25,11 @@ public class Meals
         //Used for data retrieval
     }
 
-    public Meals(Image mealPhoto, String entryDate, String mealType, String description, double calories,
+    public Meals(String imageURL, String entryDate, String mealType, String description, double calories,
                  double protein, double fat, double carbohydrates, double cholesterol, double fiber, double sodium,
                  double potassium)
     {
-        this.mealPhoto = mealPhoto;
+        this.imageURL = imageURL;
         this.entryDate = entryDate;
         this.mealType = mealType;
         this.description = description;
@@ -42,9 +43,9 @@ public class Meals
         this.potassium = potassium;
     }
 
-    public Image getMealPhoto() { return mealPhoto; }
+    public String getImageURL() { return imageURL; }
 
-    public void setMealPhoto(Image mealPhoto) { this.mealPhoto = mealPhoto; }
+    public void setImageURL(String imageURL) { this.imageURL= imageURL; }
 
     public String getEntryDate() { return entryDate; }
 
