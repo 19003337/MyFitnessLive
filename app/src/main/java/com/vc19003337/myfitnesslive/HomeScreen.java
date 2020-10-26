@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
@@ -112,7 +113,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        myRef.child("Goals").addValueEventListener(new ValueEventListener() {
+        myRef.child("Goals").addValueEventListener(new ValueEventListener()
+        {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -159,7 +161,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
                     latestMeal.setText(meals.entryDate + " - " + meals.mealType);
                     latestMealDescription.setText(meals.description);
-                    caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
+                    //caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
+                    caloriesConsumed.setText(String.format(Locale.ENGLISH,"%.2f",calculatedCaloriesConsumed) + " kcal");
 
                     if(calculatedCaloriesRemaining == 0)
                     {
@@ -167,7 +170,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     }
                     else{
                         Double totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
-                        caloriesRemaining.setText(totalCaloriesRemaining.toString() + " calories remaining");
+                        caloriesRemaining.setText(String.format(Locale.ENGLISH,"%.2f",totalCaloriesRemaining) + " calories remaining");
                     }
                 }
                 else{
@@ -234,9 +237,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_PhotoAlbum:
-                //helper.openIntent(this, HomeScreen.class);
-                Toast.makeText(this, "Currently in development",
-                        Toast.LENGTH_SHORT).show();
+                helper.openIntent(this, PhotoAlbum.class);
+                //Toast.makeText(this, "Currently in development",
+                        //Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Profile:
