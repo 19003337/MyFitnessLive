@@ -306,8 +306,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                  */
                 Toast.makeText(this, "You have successfully logged out!",
                         Toast.LENGTH_SHORT).show();
-                HomeScreen.this.finish();
-                //System.exit(0);
+                //HomeScreen.this.finish();
+                System.exit(0);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -80,12 +80,6 @@ public class MainActivity extends AppCompatActivity
                             email.setText("");
                             password.setText("");
                         }
-
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "You have entered an invalid email or password. Please re-enter your credentials!",
-                                    Toast.LENGTH_LONG).show();
-                        }
                     }
                 }).addOnFailureListener(new OnFailureListener()
                 {
@@ -114,16 +108,17 @@ public class MainActivity extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
+        /*
         if (currentUser != null)
         {
-            /*
             Toast.makeText(MainActivity.this, "You are already logged in " + currentUser.getEmail(),
                     Toast.LENGTH_LONG).show();
 
             Intent openNewActivity = new Intent(MainActivity.this, HomeScreen.class);
             startActivity(openNewActivity);
-             */
+
             mAuth.signOut();
         }
+        */
     }
 }
