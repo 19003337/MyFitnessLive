@@ -2,6 +2,7 @@ package com.vc19003337.myfitnesslive;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,7 +72,10 @@ public class PhotoAlbum extends AppCompatActivity
                     Collections.reverse(photoAlbumItemsArrayList);
                     adapter = new PhotoAlbumItemsAdapter(photoAlbumItemsArrayList, PhotoAlbum.this);
                     recyclerView.setLayoutManager(layoutManager);
+
                     recyclerView.setAdapter(adapter);
+
+
                 }
                 catch (Exception ex)
                 {
