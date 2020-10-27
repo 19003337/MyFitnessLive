@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     EditText email, password;
     Button login, register, forgotPassword;
     CheckBox rememberMe;
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     FirebaseUser currentUser;
     CardView loginCardView;
 
@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         login = findViewById(R.id.btn_signIn);
         register = findViewById(R.id.btn_signUp);
         forgotPassword = findViewById(R.id.btn_forgotPassword);
-        currentUser = mAuth.getCurrentUser();
         rememberMe = findViewById(R.id.checkbox_rememberMe);
         loginCardView = findViewById(R.id.cardView_login);
 
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
+
         if (currentUser != null)
         {
             /*
@@ -119,8 +120,8 @@ public class MainActivity extends AppCompatActivity
             Intent openNewActivity = new Intent(MainActivity.this, HomeScreen.class);
             startActivity(openNewActivity);
              */
-
             mAuth.signOut();
         }
+
     }
 }

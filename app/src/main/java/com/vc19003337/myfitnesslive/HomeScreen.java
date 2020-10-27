@@ -179,7 +179,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 for (DataSnapshot mealsValues : snapshot.getChildren())
                 {
                     meals = mealsValues.getValue(Meals.class);
-
+                    assert meals != null;
                     if(meals.entryDate.equals(dateToday))
                     {
                         calculatedCaloriesConsumed += meals.calories;
@@ -301,7 +301,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 helper.openIntent(this, MainActivity.class);
                 mAuth.signOut();
                 Toast.makeText(this, "You have successfully logged out!",
-                        Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
