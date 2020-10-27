@@ -47,8 +47,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
-    Button camera, caloriesBurned, goalCalories;
-    TextView caloriesRemaining, caloriesConsumed, latestMeal, latestMealDescription;
+    Button camera, caloriesBurned, goalCalories, caloriesConsumed;
+    TextView caloriesRemaining, latestMeal, latestMealDescription;
     ImageView latestMealIV;
     Integer calculatedCaloriesRemaining;
     Double calculatedCaloriesConsumed;
@@ -113,21 +113,31 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        caloriesBurned.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Toast.makeText(HomeScreen.this, "Exercise feature in development", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         goalCalories.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 Intent i = new Intent(HomeScreen.this, GoalsScreen.class);
+                startActivity(i);
+            }
+        });
+
+        caloriesBurned.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(HomeScreen.this, "Exercise feature coming soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        caloriesConsumed.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(HomeScreen.this, PhotoAlbum.class);
                 startActivity(i);
             }
         });
@@ -238,7 +248,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
             case R.id.nav_Diary:
                 //helper.openIntent(this, HomeScreen.class);
-                Toast.makeText(this, "New Feature Coming Soon!",
+                Toast.makeText(this, "New feature to be developed!",
                         Toast.LENGTH_SHORT).show();
                 break;
 
@@ -249,7 +259,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Progress:
-                Toast.makeText(this, "New feature in development!",
+                Toast.makeText(this, "Currently in development!",
                         Toast.LENGTH_SHORT).show();
                 break;
 
@@ -265,7 +275,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
             case R.id.nav_Exercise:
                 //helper.openIntent(this, PhotoAlbum.class);
-                Toast.makeText(this, "New Feature coming soon",
+                Toast.makeText(this, "New feature coming soon",
                     Toast.LENGTH_SHORT).show();
                 break;
 
