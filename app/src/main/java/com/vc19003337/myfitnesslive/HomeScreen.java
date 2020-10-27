@@ -50,8 +50,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     Button camera, caloriesBurned, goalCalories, caloriesConsumed;
     TextView caloriesRemaining, latestMeal, latestMealDescription;
     ImageView latestMealIV;
-    Integer calculatedCaloriesRemaining;
-    Double calculatedCaloriesConsumed;
+    Integer calculatedCaloriesRemaining, calculatedCaloriesConsumed;
+    //Double calculatedCaloriesConsumed;
     Goals goals;
     Meals meals;
     //UserProfile userProfile;
@@ -69,7 +69,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateToday = dateFormat.format(calendar.getTime());
 
-        calculatedCaloriesConsumed = 0.0;
+        calculatedCaloriesConsumed = 0;
         caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
         goalCalories = findViewById(R.id.btn_TargetCalories);
         caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
@@ -191,16 +191,18 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
                     latestMeal.setText(meals.entryDate + " - " + meals.mealType);
                     latestMealDescription.setText(meals.description);
-                    //caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
-                    caloriesConsumed.setText(String.format(Locale.ENGLISH,"%.2f",calculatedCaloriesConsumed) + " kcal");
+                    caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
+                    //caloriesConsumed.setText(String.format(Locale.ENGLISH,"%.2f",calculatedCaloriesConsumed) + " kcal");
 
                     if(calculatedCaloriesRemaining == 0)
                     {
                         caloriesRemaining.setText("Goals not set");
                     }
                     else{
-                        Double totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
-                        caloriesRemaining.setText(String.format(Locale.ENGLISH,"%.2f",totalCaloriesRemaining) + " calories remaining");
+                        int totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
+                        caloriesRemaining.setText(totalCaloriesRemaining + " calories remaining");
+                        //Double totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
+                        //caloriesRemaining.setText(String.format(Locale.ENGLISH,"%.2f",totalCaloriesRemaining) + " calories remaining");
                     }
                 }
                 else{

@@ -11,7 +11,7 @@ public class Meals
     String entryDate;
     String mealType;
     String description;
-    double calories;
+    int calories;
     double protein;
     double fat;
     double carbohydrates;
@@ -25,7 +25,7 @@ public class Meals
         //Used for data retrieval
     }
 
-    public Meals(String imageURL, String entryDate, String mealType, String description, double calories,
+    public Meals(String imageURL, String entryDate, String mealType, String description, int calories,
                  double protein, double fat, double carbohydrates, double cholesterol, double fiber, double sodium,
                  double potassium)
     {
@@ -63,11 +63,11 @@ public class Meals
         this.description = description;
     }
 
-    public double getCalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public void setCalories(double calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 

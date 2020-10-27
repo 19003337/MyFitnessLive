@@ -59,7 +59,8 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
     FirebaseUser currentUser;
     Calendar calendar;
     String mealTypeSelected, dateToday, currentPhotoPath, mealDescription, imageName, imageURL;
-    Double calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium;
+    Double protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium;
+    Integer calories;
     Image photoToUpload;
     ImageView photoToUploadIV;
     TextView displayDateTodayTV;
@@ -130,9 +131,10 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
             {
                 try {
                     mealDescription = mealDescriptionET.getText().toString().trim();
-                    calories = Double.parseDouble(caloriesET.getText().toString().trim());
-                    protein= Double.parseDouble(proteinET.getText().toString().trim());
-                    fat= Double.parseDouble(fatET.getText().toString().trim());
+                    calories = Integer.parseInt(caloriesET.getText().toString().trim());
+                    //calories = Double.parseDouble(caloriesET.getText().toString().trim());
+                    protein = Double.parseDouble(proteinET.getText().toString().trim());
+                    fat = Double.parseDouble(fatET.getText().toString().trim());
                     carbohydrates = Double.parseDouble(carbohydratesET.getText().toString().trim());
                     cholesterol = Double.parseDouble(cholesterolET.getText().toString().trim());
                     fiber = Double.parseDouble(fiberET.getText().toString().trim());
