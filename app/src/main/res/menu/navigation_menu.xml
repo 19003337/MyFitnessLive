@@ -35,6 +35,16 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Photo Album"/>
 
+        <item
+            android:id="@+id/nav_Exercise"
+            android:icon="@drawable/ic_baseline_directions_run_24"
+            android:title="Exercise"/>
+
+        <item
+            android:id="@+id/nav_WaterIntake"
+            android:icon="@drawable/ic_baseline_local_drink_24"
+            android:title="Water Intake"/>
+
 
     </group>
 

@@ -47,8 +47,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
-    Button camera;
-    TextView caloriesRemaining, goalCalories, caloriesConsumed, caloriesBurned, latestMeal, latestMealDescription;
+    Button camera, caloriesBurned, goalCalories;
+    TextView caloriesRemaining, caloriesConsumed, latestMeal, latestMealDescription;
     ImageView latestMealIV;
     Integer calculatedCaloriesRemaining;
     Double calculatedCaloriesConsumed;
@@ -113,6 +113,25 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+        caloriesBurned.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(HomeScreen.this, "Exercise feature in development", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        goalCalories.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(HomeScreen.this, GoalsScreen.class);
+                startActivity(i);
+            }
+        });
+
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
         {
             @SuppressLint("SetTextI18n")
@@ -143,6 +162,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         myRef.child("Meals").addValueEventListener(new ValueEventListener()
         {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
@@ -176,6 +196,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 else{
                     latestMeal.setText("No meals saved!");
                     latestMealDescription.setText("Press camera now!");
+                    latestMealIV.setImageDrawable(getResources().getDrawable(R.drawable.nomeals));
                 }
             }
 
@@ -203,7 +224,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view)
     {
-
+        //To do code
     }
 
     @Override
@@ -228,7 +249,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Progress:
-                Toast.makeText(this, "Coming Soon!",
+                Toast.makeText(this, "New feature in development!",
                         Toast.LENGTH_SHORT).show();
                 break;
 
@@ -242,6 +263,18 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                         //Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.nav_Exercise:
+                //helper.openIntent(this, PhotoAlbum.class);
+                Toast.makeText(this, "New Feature coming soon",
+                    Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_WaterIntake:
+                //helper.openIntent(this, PhotoAlbum.class);
+                Toast.makeText(this, "Currently being developed",
+                    Toast.LENGTH_SHORT).show();
+                break;
+
             case R.id.nav_Profile:
                 helper.openIntent(this, Profile.class);
                 break;
@@ -253,8 +286,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Logout:
-                mAuth.signOut();
                 helper.openIntent(this, MainActivity.class);
+                mAuth.signOut();
                 Toast.makeText(this, "You have successfully logged out!",
                         Toast.LENGTH_SHORT).show();
                 break;
@@ -266,8 +299,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onPointerCaptureChanged(boolean hasCapture)
     {
-
+        //To do code
     }
-
-
 }

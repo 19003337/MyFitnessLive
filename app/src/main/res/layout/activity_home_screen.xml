@@ -84,7 +84,7 @@
             android:id="@+id/imageView_LatestMealPhoto"
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            app:srcCompat="@drawable/lunchsmall">
+            app:srcCompat="@drawable/loading">
         </ImageView>
 
         <LinearLayout

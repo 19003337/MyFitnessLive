@@ -263,6 +263,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Profile.this, "Profile saved successfully", Toast.LENGTH_SHORT).show();
+                                    Intent openNewActivity = new Intent(Profile.this, HomeScreen.class);
+                                    startActivity(openNewActivity);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener()
