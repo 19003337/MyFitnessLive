@@ -171,19 +171,37 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_calories"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/marcellus"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_calories"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/marcellus"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_CaloriesUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/marcellus"
+                    android:text="kcal"
+                    android:textSize="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_Protein"
@@ -195,6 +213,11 @@
                 android:text="Protein"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_protein"
@@ -211,6 +234,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_ProteinUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="g"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Fat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,6 +256,11 @@
                 android:text="Fat"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_fat"
@@ -236,6 +277,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_FatUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="g"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Carbohydrates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -245,6 +299,11 @@
                 android:text="Carbohydrates"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_carbohydrates"
@@ -261,6 +320,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_CarbohydratesUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="g"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Cholesterol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -270,6 +342,11 @@
                 android:text="Cholesterol"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_cholesterol"
@@ -286,6 +363,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_CholesterolUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="mg"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Fiber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -295,6 +385,11 @@
                 android:text="Fiber"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_fiber"
@@ -311,6 +406,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_FiberUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="g"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Sodium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -320,6 +428,11 @@
                 android:text="Sodium"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_sodium"
@@ -336,6 +449,19 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_SodiumUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="mg"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/tv_Potassium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -345,6 +471,11 @@
                 android:text="Potassium"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_potassium"
@@ -359,6 +490,19 @@
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_PotassiumUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marcellus"
+                android:text="mg"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
             <Button
                 android:id="@+id/btn_Save"
