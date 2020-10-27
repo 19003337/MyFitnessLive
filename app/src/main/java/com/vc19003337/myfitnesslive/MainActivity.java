@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity
 
                             Intent openNewActivity = new Intent(MainActivity.this, HomeScreen.class);
                             startActivity(openNewActivity);
+
+                            //Clear entered credentials
+                            email.setText("");
+                            password.setText("");
                         }
 
                         else
@@ -110,7 +114,6 @@ public class MainActivity extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
-
         if (currentUser != null)
         {
             /*
@@ -122,6 +125,5 @@ public class MainActivity extends AppCompatActivity
              */
             mAuth.signOut();
         }
-
     }
 }

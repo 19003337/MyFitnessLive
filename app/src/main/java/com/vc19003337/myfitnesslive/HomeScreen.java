@@ -298,10 +298,16 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Logout:
+                /*
                 helper.openIntent(this, MainActivity.class);
                 mAuth.signOut();
                 Toast.makeText(this, "You have successfully logged out!",
                     Toast.LENGTH_SHORT).show();
+                 */
+                Toast.makeText(this, "You have successfully logged out!",
+                        Toast.LENGTH_SHORT).show();
+                HomeScreen.this.finish();
+                //System.exit(0);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -33,7 +33,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/marcellus"
                 android:gravity="center"
-                android:text="23/10/2020 - Breakfast"
+                android:text="23/10/2020 - Snack/Other"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14dp"
