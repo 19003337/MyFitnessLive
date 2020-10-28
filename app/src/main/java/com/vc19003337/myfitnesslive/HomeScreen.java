@@ -1,3 +1,14 @@
+//19003337
+//Charmaine Dobbin
+//OPSC Task 2
+/*_____________________________________code attribution________________________________________________
+The code used for exiting the app was adapted from Tutorialspoint:
+Author: Azhar.
+Link: Tutorialspoint. 2019. [Online] Available at: https://www.tutorialspoint.com/how-to-quit-application-programmatically
+[Accessed 27 October 2020].
+____________________________________________end________________________________________________________
+*/
+
 package com.vc19003337.myfitnesslive;
 
 import androidx.annotation.NonNull;
@@ -38,7 +49,7 @@ import java.util.Locale;
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     Calendar calendar;
     String dateToday;
@@ -62,7 +73,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         calendar = Calendar.getInstance();
@@ -306,7 +317,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                  */
                 Toast.makeText(this, "You have successfully logged out!",
                         Toast.LENGTH_SHORT).show();
-                //HomeScreen.this.finish();
+                HomeScreen.this.finish();
                 System.exit(0);
                 break;
         }

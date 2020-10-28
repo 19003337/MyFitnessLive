@@ -1,3 +1,19 @@
+//19003337
+//Charmaine Dobbin
+//OPSC Task 2
+/*_____________________________________code attribution________________________________________________
+The code used for the RecyclerView was adapted from YouTube:
+Author: Coding in Flow.
+Link: YouTube. 2017. [Online] Available at: https://www.youtube.com/playlist?list=PLrnPJCHvNZuBtTYUuc5Pyo4V7xZ2HNtf4
+[Accessed 26 October 2020].
+
+The code used to display the image using the URL was adapted from Simplified Coding:
+Author: Khan, B.
+Link: Simplified Coding. 2016. [Online] Available at: https://www.simplifiedcoding.net/picasso-android-tutorial-picasso-image-loader-library/
+[Accessed 26 October 2020].
+____________________________________________end________________________________________________________
+*/
+
 package com.vc19003337.myfitnesslive;
 
 import androidx.annotation.NonNull;
@@ -26,7 +42,7 @@ import java.util.Locale;
 public class PhotoAlbum extends AppCompatActivity
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     PhotoAlbumItems photos;
     Meals meals;
@@ -40,7 +56,7 @@ public class PhotoAlbum extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_album);
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
 
@@ -72,9 +88,7 @@ public class PhotoAlbum extends AppCompatActivity
                     Collections.reverse(photoAlbumItemsArrayList);
                     adapter = new PhotoAlbumItemsAdapter(photoAlbumItemsArrayList, PhotoAlbum.this);
                     recyclerView.setLayoutManager(layoutManager);
-
                     recyclerView.setAdapter(adapter);
-
 
                 }
                 catch (Exception ex)

@@ -1,3 +1,14 @@
+//19003337
+//Charmaine Dobbin
+//OPSC Task 2
+/*_____________________________________code attribution________________________________________________
+The code used for sorting the List<> was taking from Stackoverflow:
+Author: Rawat, H.
+Link: Stackoverflow. 2017. [Online] Available at: https://stackoverflow.com/questions/34156996/firebase-data-desc-sorting-in-android/34158197#34158197
+[Accessed 13 October 2020].
+____________________________________________end________________________________________________________
+*/
+
 package com.vc19003337.myfitnesslive;
 
 import androidx.annotation.NonNull;
