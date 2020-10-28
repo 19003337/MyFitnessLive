@@ -49,7 +49,7 @@ import java.util.Locale;
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     FirebaseUser currentUser;
     Calendar calendar;
     String dateToday;
@@ -73,7 +73,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         calendar = Calendar.getInstance();
@@ -317,7 +317,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                  */
                 Toast.makeText(this, "You have successfully logged out!",
                         Toast.LENGTH_SHORT).show();
-                HomeScreen.this.finish();
+                //HomeScreen.this.finish();
+                mAuth.signOut();
                 System.exit(0);
                 break;
         }
