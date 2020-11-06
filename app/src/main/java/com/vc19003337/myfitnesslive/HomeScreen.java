@@ -250,6 +250,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         //To do code
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
