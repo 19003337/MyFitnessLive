@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CaloriesChart"></activity>
+        <activity android:name=".ProcessReportsScreen"></activity>
+        <activity android:name=".CaloriesChart" />
         <activity android:name=".WeightChart" />
         <activity
             android:name=".ProcessScreen2"
@@ -29,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ProcessScreen" />
         <activity android:name=".AddMeal" />
         <activity android:name=".PhotoAlbum" />

@@ -273,7 +273,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Progress:
-                helper.openIntent(this, ProcessScreen2.class);
+                helper.openIntent(this, ProcessReportsScreen.class);
                 //Toast.makeText(this, "Currently in development!",
                         //Toast.LENGTH_SHORT).show();
                 break;
