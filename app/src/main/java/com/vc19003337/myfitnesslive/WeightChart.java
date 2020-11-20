@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -48,30 +49,26 @@ public class WeightChart extends AppCompatActivity
         DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
         lineChart = findViewById(R.id.mpLineChart);
 
+        lineChart.setDragEnabled(true);
+        lineChart.setPinchZoom(true);
+        lineChart.setTouchEnabled(true);
+        //lineChart.getAxisLeft().setAxisMinimum(0);
+        //lineChart.getAxisLeft().setAxisMaximum(200);
+        lineChart.getDescription().setText("Weight Progress Chart");
+
         //ArrayList<String> xAxis = new ArrayList<>();
-        ArrayList<Entry> yAxisGoalWeight = new ArrayList<>();
-        yAxisGoalWeight.add(new Entry(1, 50));
-        yAxisGoalWeight.add(new Entry(2, 50));
-        yAxisGoalWeight.add(new Entry(3, 50));
-        yAxisGoalWeight.add(new Entry(4, 50));
-        yAxisGoalWeight.add(new Entry(5, 50));
-        yAxisGoalWeight.add(new Entry(6, 50));
-        yAxisGoalWeight.add(new Entry(7, 50));
-        yAxisGoalWeight.add(new Entry(8, 50));
-        yAxisGoalWeight.add(new Entry(9, 50));
-        yAxisGoalWeight.add(new Entry(10, 50));
 
         ArrayList<Entry> yAxisWeightMeasured = new ArrayList<>();
-        yAxisWeightMeasured.add(new Entry(1, 53,0));
-        yAxisWeightMeasured.add(new Entry(2, 52,5));
-        yAxisWeightMeasured.add(new Entry(3, 51,9));
-        yAxisWeightMeasured.add(new Entry(4, 51,4));
-        yAxisWeightMeasured.add(new Entry(5, 51,0));
-        yAxisWeightMeasured.add(new Entry(6, 51,0));
-        yAxisWeightMeasured.add(new Entry(7, 51,2));
-        yAxisWeightMeasured.add(new Entry(8, 50,8));
-        yAxisWeightMeasured.add(new Entry(9, 50,5));
-        yAxisWeightMeasured.add(new Entry(10, 50,0));
+        yAxisWeightMeasured.add(new Entry(1, 250,0));
+        yAxisWeightMeasured.add(new Entry(2, 72,5));
+        yAxisWeightMeasured.add(new Entry(3, 69,9));
+        yAxisWeightMeasured.add(new Entry(4, 64,4));
+        yAxisWeightMeasured.add(new Entry(5, 60,0));
+        yAxisWeightMeasured.add(new Entry(6, 55,0));
+        yAxisWeightMeasured.add(new Entry(7, 54,2));
+        yAxisWeightMeasured.add(new Entry(8, 53,8));
+        yAxisWeightMeasured.add(new Entry(9, 52,5));
+        yAxisWeightMeasured.add(new Entry(10, 51,0));
 
 
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
@@ -113,7 +110,6 @@ public class WeightChart extends AppCompatActivity
                     //weightList.add(weight.ToString());
                     float measuredWeight = Float.parseFloat(String.valueOf(weight.currentWeight));
                     //xAxis.add(String.valueOf(weight.entryDate));
-                    //yAxisGoalWeight.add(new Entry(Float.parseFloat(String.valueOf(weight.entryDate)), goalWeight));
                     //yAxisWeightMeasured.add(new Entry(Float.parseFloat(String.valueOf(weight.entryDate)), measuredWeight));
                     //weightEntries.add(new Entry(measuredWeightChart), Float.parseFloat(weight.entryDate));
                     //weightEntries.add(new Entry(Float.parseFloat(weight.entryDate), Float.parseFloat(String.valueOf(weight.currentWeight))));
@@ -121,19 +117,25 @@ public class WeightChart extends AppCompatActivity
 
                 ArrayList<ILineDataSet> weightEntriesLineDataSet = new ArrayList<>();
                 LineDataSet lineDataSet = new LineDataSet(yAxisWeightMeasured, "Weight");
-                lineDataSet.setDrawCircles(false);
+                lineDataSet.setDrawCircles(true);
+                //lineDataSet.setLineWidth(2f);
+                lineDataSet.setValueTextSize(12f);
                 lineDataSet.setColor(Color.RED);
 
-                LineDataSet lineDataSet2 = new LineDataSet(yAxisGoalWeight, "Goal");
-                lineDataSet2.setDrawCircles(false);
-                lineDataSet2.setColor(Color.GREEN);
-
                 weightEntriesLineDataSet.add(lineDataSet);
-                weightEntriesLineDataSet.add(lineDataSet2);
+
+                LimitLine target = new LimitLine(goalWeight, "Goal Weight");
+                target.setLineWidth(2f);
+                target.enableDashedLine(10f, 10f, 0f);
+                target.setLineColor(Color.GREEN);
+                target.setTextColor(Color.DKGRAY);
+                target.setTextSize(15f);
+                target.setLabelPosition(LimitLine.LimitLabelPosition.LEFT_BOTTOM);
 
                 LineData data = new LineData(weightEntriesLineDataSet);
                 lineChart.setData(data);
-                lineChart.getDescription().setText("Weight Progress Chart");
+                lineChart.getAxisLeft().addLimitLine(target);
+
             }
 
             @Override
