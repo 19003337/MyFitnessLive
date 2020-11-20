@@ -320,7 +320,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(this, "You have successfully logged out!",
                         Toast.LENGTH_SHORT).show();
                 //HomeScreen.this.finish();
+                //finish();
                 mAuth.signOut();
+                finishAffinity();
                 System.exit(0);
                 break;
         }
