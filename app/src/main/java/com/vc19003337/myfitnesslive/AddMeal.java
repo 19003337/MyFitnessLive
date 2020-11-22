@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -63,11 +65,12 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
     Integer calories;
     Image photoToUpload;
     ImageView photoToUploadIV;
-    TextView displayDateTodayTV;
+    TextView displayDateTodayTV, progressBarTV;
     EditText mealDescriptionET, caloriesET, proteinET, fatET, carbohydratesET, cholesterolET, fiberET, sodiumET, potassiumET;
     Button saveBTN, cameraBTN, galleryBTN;
     Meals meals;
     Uri contentUri, downloadUrl;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -98,6 +101,10 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
         saveBTN = findViewById(R.id.btn_Save);
         cameraBTN = findViewById(R.id.btn_Camera);
         galleryBTN = findViewById(R.id.btn_Gallery);
+        progressBarTV = findViewById(R.id.textView_Progress);
+        progressBar = findViewById(R.id.progressBar_Progress);
+        progressBarTV.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
 
         final Spinner spinnerMealTypes = findViewById(R.id.spinner_MealTypes);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddMeal.this, R.array.mealTypes, android.R.layout.simple_spinner_item);
@@ -154,6 +161,8 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                                 @Override
                                 public void onSuccess(Uri uri)
                                 {
+                                    progressBarTV.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.VISIBLE);
                                     imageURL= uri.toString();
 
                                     meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
@@ -162,6 +171,8 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
+                                                    progressBar.setProgress(0);
+                                                    progressBarTV.setText("Uploaded 100%");
                                                     Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
                                                     Intent openNewActivity = new Intent(AddMeal.this, HomeScreen.class);
                                                     startActivity(openNewActivity);
@@ -185,8 +196,16 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                         {
                             Toast.makeText(AddMeal.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
+                    {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot)
+                        {
+                            double progress = (100 * snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                            progressBar.setProgress((int)progress);
+                            progressBarTV.setText(progress + "%");
+                        }
                     });
-
                 }
                 catch (Exception ex)
                 {

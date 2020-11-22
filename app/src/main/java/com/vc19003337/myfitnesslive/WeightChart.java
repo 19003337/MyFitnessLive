@@ -34,7 +34,7 @@ public class WeightChart extends AppCompatActivity
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     Weight weight;
-    Goals goals, goalsData;
+    Goals goalsData;
     //String goalWeight, currentWeight, entryDate;
     Float goalWeight;
     LineChart lineChart;
@@ -52,13 +52,14 @@ public class WeightChart extends AppCompatActivity
         lineChart.setDragEnabled(true);
         lineChart.setPinchZoom(true);
         lineChart.setTouchEnabled(true);
-        //lineChart.getAxisLeft().setAxisMinimum(0);
+        lineChart.getAxisLeft().setAxisMinimum(0);
         //lineChart.getAxisLeft().setAxisMaximum(200);
         lineChart.getDescription().setText("Weight Progress Chart");
 
         //ArrayList<String> xAxis = new ArrayList<>();
 
         ArrayList<Entry> yAxisWeightMeasured = new ArrayList<>();
+        /*
         yAxisWeightMeasured.add(new Entry(1, 250,0));
         yAxisWeightMeasured.add(new Entry(2, 72,5));
         yAxisWeightMeasured.add(new Entry(3, 69,9));
@@ -69,7 +70,7 @@ public class WeightChart extends AppCompatActivity
         yAxisWeightMeasured.add(new Entry(8, 53,8));
         yAxisWeightMeasured.add(new Entry(9, 52,5));
         yAxisWeightMeasured.add(new Entry(10, 51,0));
-
+        */
 
         myRef.child("Goals").addValueEventListener(new ValueEventListener()
         {
@@ -80,7 +81,6 @@ public class WeightChart extends AppCompatActivity
 
                 if (goalsData != null)
                 {
-                    //goalWeight = (DecimalFormat.getNumberInstance().format(goals.getGoalWeight()));
                     goalWeight = Float.parseFloat(String.valueOf(goalsData.goalWeight));
                 }
                 else{
@@ -98,19 +98,22 @@ public class WeightChart extends AppCompatActivity
 
         myRef.child("WeightChanges").addValueEventListener(new ValueEventListener()
         {
+            int count = 0;
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
                 weight = new Weight();
-                //weightList = new ArrayList<String>();
 
                 for (DataSnapshot weightValues : snapshot.getChildren())
                 {
+                    count++;
                     weight = weightValues.getValue(Weight.class);
                     //weightList.add(weight.ToString());
                     float measuredWeight = Float.parseFloat(String.valueOf(weight.currentWeight));
                     //xAxis.add(String.valueOf(weight.entryDate));
-                    //yAxisWeightMeasured.add(new Entry(Float.parseFloat(String.valueOf(weight.entryDate)), measuredWeight));
+
+                    yAxisWeightMeasured.add(new Entry(Float.parseFloat(String.valueOf(count)), measuredWeight));
                     //weightEntries.add(new Entry(measuredWeightChart), Float.parseFloat(weight.entryDate));
                     //weightEntries.add(new Entry(Float.parseFloat(weight.entryDate), Float.parseFloat(String.valueOf(weight.currentWeight))));
                 }
@@ -135,7 +138,6 @@ public class WeightChart extends AppCompatActivity
                 LineData data = new LineData(weightEntriesLineDataSet);
                 lineChart.setData(data);
                 lineChart.getAxisLeft().addLimitLine(target);
-
             }
 
             @Override
@@ -144,7 +146,5 @@ public class WeightChart extends AppCompatActivity
                 Toast.makeText(WeightChart.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }
