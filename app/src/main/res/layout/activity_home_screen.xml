@@ -51,7 +51,7 @@
             <Button
                 android:id="@+id/btn_TargetCalories"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:drawableLeft="@drawable/ic_outline_adjust_24"
                 android:text="1200 kcal"
                 android:textAllCaps="false"
@@ -61,7 +61,7 @@
             <Button
                 android:id="@+id/btn_CaloriesConsumed"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:drawableLeft="@drawable/ic_baseline_fastfood_24"
                 android:text="0 kcal"
                 android:textAllCaps="false"
@@ -71,7 +71,7 @@
             <Button
                 android:id="@+id/btn_CaloriesBurned"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:drawableLeft="@drawable/ic_baseline_directions_run_24"
                 android:text="0 kcal"
                 android:textAllCaps="false"
@@ -83,9 +83,8 @@
         <ImageView
             android:id="@+id/imageView_LatestMealPhoto"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            app:srcCompat="@drawable/loading">
-        </ImageView>
+            android:layout_height="280dp"
+            app:srcCompat="@drawable/loading"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,7 +95,7 @@
                 android:id="@+id/tv_LatestMeal"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/marcellus"
                 android:gravity="center"
@@ -110,7 +109,7 @@
                 android:id="@+id/btn_Camera"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/bluecameral" />
 
@@ -127,8 +126,21 @@
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:textStyle="bold"/>
-
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_saveTotalCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/marcellus"
+            android:text="Save Today's Final Calorie Count"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
