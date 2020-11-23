@@ -43,7 +43,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     FirebaseUser currentUser;
 
     String unitsMeasured, fullName, gender, dateOfBirth, emailAddress, enteredFullName;
-    Double height, startingWeight;
+    Double height, startingWeight, heightToDisplay, weightToDisplay;
     TextView displayFullName, displayEmailAddress, heightUnit, weightUnit;
     EditText fullNameET, dateOfBirthET, heightET, startingWeightET, emailET;
     RadioGroup radioSexGroup;
@@ -52,6 +52,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     Button save;
     UserProfile userProfile;
     UnitSettings unitSettings;
+    Double weightConversion = 0.45359237;
+    Double heightConversion = 2.54;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -139,6 +142,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
 
                 if (userProfile != null)
                 {
+                    heightToDisplay = (userProfile.height / heightConversion);
+                    weightToDisplay = (userProfile.startingWeight / weightConversion);
+
                     try
                     {
                         displayFullName.setText(userProfile.getFullName().toString());
@@ -148,21 +154,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         heightET.setText(String.valueOf(userProfile.getHeight()));
                         startingWeightET.setText(String.valueOf(userProfile.getStartingWeight()));
                         //startingWeightET.setText(DecimalFormat.getNumberInstance().format(userProfile.getStartingWeight()));
-                        //unitsMeasured = userProfile.getUnitsMeasured().toString();
                         gender = userProfile.getGender().toString();
-
-                        //set selected unitMeasured
-                        /*
-                        if (unitsMeasured.equals("Metric"))
-                        {
-                            spinnerUnits.setSelection(0);
-                        }
-
-                        if (unitsMeasured.equals("Imperial"))
-                        {
-                            spinnerUnits.setSelection(1);
-                        }
-                         */
 
                         //set gender
                         if(gender.equals("Female"))
@@ -214,10 +206,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         }
                         if (unitSettings.getUnitSetting().equals("Imperial"))
                         {
-                            heightUnit.setText("inches");
-                            weightUnit.setText("pounds");
-                        }
 
+                            heightUnit.setText("inches");
+                            //heightET.setText(DecimalFormat.getNumberInstance().format(df.format(heightToDisplay)));
+                            heightET.setText(df.format(heightToDisplay));
+                            weightUnit.setText("pounds");
+                            //startingWeightET.setText(DecimalFormat.getNumberInstance().format(df.format(weightToDisplay)));
+                            startingWeightET.setText(df.format(weightToDisplay));
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -255,7 +251,17 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     height = Double.parseDouble(heightET.getText().toString().trim());
                     startingWeight = Double.parseDouble(startingWeightET.getText().toString().trim());
 
-                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, height, startingWeight);
+                    if (heightUnit.getText().equals("inches"))
+                    {
+                        height = (height * heightConversion);
+                    }
+
+                    if (weightUnit.getText().equals("pounds"))
+                    {
+                        startingWeight = (startingWeight * weightConversion);
+                    }
+
+                    userProfile = new UserProfile(fullName, emailAddress, gender, dateOfBirth, Math.round(height), Math.round(startingWeight));
 
                     DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     myRef.child("Profile").setValue(userProfile)
