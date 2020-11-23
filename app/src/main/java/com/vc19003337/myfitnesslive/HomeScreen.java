@@ -30,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,11 +60,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggleOnAndOff;
     NavigationView navigationView;
-    Button camera, caloriesBurned, goalCalories, caloriesConsumed;
-    TextView caloriesRemaining, latestMeal, latestMealDescription;
+    Button camera, caloriesBurnedBTN, goalCaloriesBTN, caloriesConsumedBTN, saveTotalCaloriesBTN;
+    TextView caloriesRemainingTV, latestMealTV, latestMealDescriptionTV;
     ImageView latestMealIV;
     Integer calculatedCaloriesRemaining, calculatedCaloriesConsumed;
     //Double calculatedCaloriesConsumed;
+    int targetCalories, caloriesConsumed, caloriesBurned;
+    Calories calories;
     Goals goals;
     Meals meals;
     //UserProfile userProfile;
@@ -81,13 +85,14 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         dateToday = dateFormat.format(calendar.getTime());
 
         calculatedCaloriesConsumed = 0;
-        caloriesRemaining = findViewById(R.id.tv_CaloriesRemaining);
-        goalCalories = findViewById(R.id.btn_TargetCalories);
-        caloriesConsumed = findViewById(R.id.btn_CaloriesConsumed);
-        caloriesBurned = findViewById(R.id.btn_CaloriesBurned);
+        caloriesRemainingTV = findViewById(R.id.tv_CaloriesRemaining);
+        goalCaloriesBTN = findViewById(R.id.btn_TargetCalories);
+        caloriesConsumedBTN = findViewById(R.id.btn_CaloriesConsumed);
+        caloriesBurnedBTN = findViewById(R.id.btn_CaloriesBurned);
+        saveTotalCaloriesBTN = findViewById(R.id.btn_saveTotalCalories);
         latestMealIV = findViewById(R.id.imageView_LatestMealPhoto);
-        latestMeal = findViewById(R.id.tv_LatestMeal);
-        latestMealDescription = findViewById(R.id.tv_LatestMealDescription);
+        latestMealTV = findViewById(R.id.tv_LatestMeal);
+        latestMealDescriptionTV = findViewById(R.id.tv_LatestMealDescription);
         //displayFullName = findViewById(R.id.tv_FullName);
         //displayEmailAddress = findViewById(R.id.tv_EmailAddress);
 
@@ -124,7 +129,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        goalCalories.setOnClickListener(new View.OnClickListener()
+        goalCaloriesBTN.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -134,7 +139,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        caloriesBurned.setOnClickListener(new View.OnClickListener()
+        caloriesBurnedBTN.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -143,13 +148,48 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        caloriesConsumed.setOnClickListener(new View.OnClickListener()
+        caloriesConsumedBTN.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 Intent i = new Intent(HomeScreen.this, PhotoAlbum.class);
                 startActivity(i);
+            }
+        });
+
+        saveTotalCaloriesBTN.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try
+                {
+                    //caloriesConsumed = Integer.parseInt(String.valueOf(calculatedCaloriesConsumed));
+                    caloriesConsumed = calculatedCaloriesConsumed;
+                    calories = new Calories(dateToday, caloriesConsumed, targetCalories, caloriesBurned);
+
+                    myRef.child("Calories").push().setValue(calories).addOnSuccessListener(new OnSuccessListener<Void>()
+                    {
+                        @Override
+                        public void onSuccess(Void aVoid)
+                        {
+                            Toast.makeText(HomeScreen.this, "Final Calories saved successfully", Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener()
+                    {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            Toast.makeText(HomeScreen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(HomeScreen.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -162,16 +202,19 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 goals = snapshot.getValue(Goals.class);
                 if(goals != null)
                 {
-                    goalCalories.setText(String.valueOf(goals.getDailyCalorieIntake()) + " kcal");
+                    goalCaloriesBTN.setText(String.valueOf(goals.getDailyCalorieIntake()) + " kcal");
                     calculatedCaloriesRemaining = goals.getDailyCalorieIntake();
-                    caloriesRemaining.setText(calculatedCaloriesRemaining.toString() + " calories remaining");
+                    caloriesRemainingTV.setText(calculatedCaloriesRemaining.toString() + " calories remaining");
                 }
                 else
                 {
                     calculatedCaloriesRemaining = 0;
-                    goalCalories.setText("0 kcal");
-                    caloriesRemaining.setText("Goals not set");
+                    goalCaloriesBTN.setText("0 kcal");
+                    caloriesRemainingTV.setText("Goals not set");
                 }
+
+                targetCalories = Integer.parseInt(String.valueOf(goals.dailyCalorieIntake));
+                caloriesBurned = 0;
             }
 
             @Override
@@ -200,25 +243,25 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 if(meals != null && meals.entryDate.equals(dateToday))
                 {
                     Picasso.with(HomeScreen.this).load(meals.imageURL).into(latestMealIV);
-                    latestMeal.setText(meals.entryDate + " - " + meals.mealType);
-                    latestMealDescription.setText(meals.description);
-                    caloriesConsumed.setText(calculatedCaloriesConsumed.toString() + " kcal");
+                    latestMealTV.setText(meals.entryDate + " - " + meals.mealType);
+                    latestMealDescriptionTV.setText(meals.description);
+                    caloriesConsumedBTN.setText(calculatedCaloriesConsumed.toString() + " kcal");
                     //caloriesConsumed.setText(String.format(Locale.ENGLISH,"%.2f",calculatedCaloriesConsumed) + " kcal");
 
                     if(calculatedCaloriesRemaining == 0)
                     {
-                        caloriesRemaining.setText("Goals not set");
+                        caloriesRemainingTV.setText("Goals not set");
                     }
                     else{
                         int totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
-                        caloriesRemaining.setText(totalCaloriesRemaining + " calories remaining");
+                        caloriesRemainingTV.setText(totalCaloriesRemaining + " calories remaining");
                         //Double totalCaloriesRemaining = (calculatedCaloriesRemaining - calculatedCaloriesConsumed);
                         //caloriesRemaining.setText(String.format(Locale.ENGLISH,"%.2f",totalCaloriesRemaining) + " calories remaining");
                     }
                 }
                 else{
-                    latestMeal.setText("No meals saved!");
-                    latestMealDescription.setText("Press camera now!");
+                    latestMealTV.setText("No meals saved!");
+                    latestMealDescriptionTV.setText("Press camera now!");
                     latestMealIV.setImageDrawable(getResources().getDrawable(R.drawable.nomeals));
                 }
             }

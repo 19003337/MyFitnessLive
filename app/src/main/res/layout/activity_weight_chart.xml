@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/marcellus"
-        android:text="Weight Chart"
+        android:text="Weight Changes vs Target"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="26dp"

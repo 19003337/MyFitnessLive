@@ -137,7 +137,7 @@
             android:layout_marginRight="5dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/marcellus"
-            android:text="Save Today's Final Calorie Count"
+            android:text="Save Today's Final Calorie Counts"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold" />

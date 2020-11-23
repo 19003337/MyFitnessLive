@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CaloriesChart extends AppCompatActivity {
+public class CaloriesChart extends AppCompatActivity
+{
+    int targetCalories, caloriesConsumed, caloriesBurned;
+    Calories calories;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calories_chart);
+
+
     }
 }

@@ -129,22 +129,24 @@ public class GoalsScreen extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                try {
+                try
+                {
                     goalWeight = Double.parseDouble(goalWeightET.getText().toString().trim());
                     dailyCalorieIntake = Integer.parseInt(dailyCalorieIntakeET.getText().toString().trim());
 
                     goals = new Goals(goalWeight, dailyCalorieIntake);
                     DatabaseReference myRef = database.getReference(mAuth.getCurrentUser().getUid());
                     myRef.child("Goals").setValue(goals)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            .addOnSuccessListener(new OnSuccessListener<Void>()
+                            {
                                 @Override
-                                public void onSuccess(Void aVoid) {
+                                public void onSuccess(Void aVoid)
+                                {
                                     Toast.makeText(GoalsScreen.this, "Goals saved successfully", Toast.LENGTH_SHORT).show();
 
                                     //Intent openNewActivity = new Intent(GoalsScreen.this, HomeScreen.class);
                                     //openNewActivity.putExtra("DailyCalorieIntake", dailyCalorieIntake);
                                     //startActivity(openNewActivity);
-
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener()

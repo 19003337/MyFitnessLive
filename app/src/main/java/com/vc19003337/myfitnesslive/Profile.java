@@ -208,10 +208,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                         {
 
                             heightUnit.setText("inches");
-                            //heightET.setText(DecimalFormat.getNumberInstance().format(df.format(heightToDisplay)));
+                            //heightET.setText(DecimalFormat.getNumberInstance().format(heightToDisplay));
                             heightET.setText(df.format(heightToDisplay));
                             weightUnit.setText("pounds");
-                            //startingWeightET.setText(DecimalFormat.getNumberInstance().format(df.format(weightToDisplay)));
+                            //startingWeightET.setText(DecimalFormat.getNumberInstance().format(weightToDisplay));
                             startingWeightET.setText(df.format(weightToDisplay));
                         }
                     }
