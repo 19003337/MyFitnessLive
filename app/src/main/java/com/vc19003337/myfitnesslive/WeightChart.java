@@ -9,10 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,9 +58,16 @@ public class WeightChart extends AppCompatActivity
         lineChart.setTouchEnabled(true);
         lineChart.getAxisLeft().setAxisMinimum(0);
         //lineChart.getAxisLeft().setAxisMaximum(200);
+        lineChart.animateY(2000);
         lineChart.getDescription().setText("Weight Progress Chart");
 
-        //ArrayList<String> xAxis = new ArrayList<>();
+        /*
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+         */
+
+        //ArrayList<String> xAxisDate = new ArrayList<>();
         //ArrayList<Entry> xAxisDateMeasured = new ArrayList<>();
 
         ArrayList<Entry> yAxisWeightMeasured = new ArrayList<>();
@@ -137,9 +147,10 @@ public class WeightChart extends AppCompatActivity
 
                     assert weight != null;
                     float measuredWeight = Float.parseFloat(String.valueOf(weight.currentWeight));
-                    //xAxis.add(String.valueOf(weight.entryDate));
+                    //xAxisDate.add(String.valueOf(weight.entryDate));
 
                     yAxisWeightMeasured.add(new Entry(Float.parseFloat(String.valueOf(count)), measuredWeight));
+                    //yAxisWeightMeasured.add(new Entry(Float.parseFloat(String.valueOf(weight.entryDate)), measuredWeight));
                     //weightEntries.add(new Entry(measuredWeightChart), Float.parseFloat(weight.entryDate));
                     //weightEntries.add(new Entry(Float.parseFloat(weight.entryDate), Float.parseFloat(String.valueOf(weight.currentWeight))));
                 }
@@ -161,7 +172,6 @@ public class WeightChart extends AppCompatActivity
                 target.setTextSize(15f);
                 target.setLabelPosition(LimitLine.LimitLabelPosition.LEFT_BOTTOM);
 
-
                 LimitLine start = new LimitLine(startingWeight, "Starting Weight");
                 start.setLineWidth(2f);
                 //start.enableDashedLine(10f, 10f, 0f);
@@ -170,10 +180,23 @@ public class WeightChart extends AppCompatActivity
                 start.setTextSize(15f);
                 start.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
 
+
+                /*
+                xAxis.setValueFormatter(new IAxisValueFormatter()
+                {
+                    @Override
+                    public String getFormattedValue(float value, AxisBase axis) {
+                        return xAxisDate.get((int) value);
+                    }
+                });
+                 */
+
                 LineData data = new LineData(weightEntriesLineDataSet);
                 lineChart.setData(data);
+                //lineChart.invalidate();
                 lineChart.getAxisLeft().addLimitLine(target);
                 lineChart.getAxisLeft().addLimitLine(start);
+
             }
 
             @Override

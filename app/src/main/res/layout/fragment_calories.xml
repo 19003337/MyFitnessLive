@@ -7,19 +7,22 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/chartHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/marcellus"
+        android:text="Calories Consumed vs Target"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="24dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:text="Calories - Progress Chart"/>
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChartCalories"
+        android:id="@+id/mpBarChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+
+    </com.github.mikephil.charting.charts.BarChart>
 
 </FrameLayout>

@@ -317,6 +317,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
             case R.id.nav_Progress:
                 helper.openIntent(this, ProcessReportsScreen.class);
+                //helper.openIntent(this, ProcessScreen.class);
                 //Toast.makeText(this, "Currently in development!",
                         //Toast.LENGTH_SHORT).show();
                 break;
@@ -332,15 +333,15 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.nav_Exercise:
-                //helper.openIntent(this, PhotoAlbum.class);
-                Toast.makeText(this, "New feature coming soon",
-                    Toast.LENGTH_SHORT).show();
+                helper.openIntent(this, ExerciseScreen.class);
+                //Toast.makeText(this, "Currently being developed",
+                        //Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_WaterIntake:
                 //helper.openIntent(this, PhotoAlbum.class);
-                Toast.makeText(this, "Currently being developed",
-                    Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "New feature coming soon",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Profile:

@@ -4,25 +4,29 @@ import java.util.Date;
 
 public class Exercise
 {
-    Date entryDate;
+    String entryDate;
     String exerciseType;
     int caloriesBurned;
-    int totalCaloriesBurned;
+    //int totalCaloriesBurned;
 
-    public Exercise(Date entryDate, String exerciseType, int caloriesBurned, int totalCaloriesBurned)
+    public Exercise()
+    {
+        //Empty constructor very important
+    }
+
+    public Exercise(String entryDate, String exerciseType, int caloriesBurned)
     {
         this.entryDate = entryDate;
         this.exerciseType = exerciseType;
         this.caloriesBurned = caloriesBurned;
-        this.totalCaloriesBurned = totalCaloriesBurned;
     }
 
-    public Date getEntryDate()
+    public String getEntryDate()
     {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate)
+    public void setEntryDate(String entryDate)
     {
         this.entryDate = entryDate;
     }
@@ -47,13 +51,12 @@ public class Exercise
         this.caloriesBurned = caloriesBurned;
     }
 
-    public int getTotalCaloriesBurned()
-    {
-        return totalCaloriesBurned;
-    }
+    @Override
+    public String toString() {
+        return
 
-    public void setTotalCaloriesBurned(int totalCaloriesBurned)
-    {
-        this.totalCaloriesBurned = totalCaloriesBurned;
+                "\t" + caloriesBurned + " kcal" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + exerciseType;
+
     }
 }

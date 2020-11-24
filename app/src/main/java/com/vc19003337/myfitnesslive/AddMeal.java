@@ -136,6 +136,9 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view)
             {
+                progressBarTV.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+
                 try {
                     mealDescription = mealDescriptionET.getText().toString().trim();
                     calories = Integer.parseInt(caloriesET.getText().toString().trim());
@@ -157,12 +160,14 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                         {
+
+                            progressBar.setProgress(100);
+                            progressBarTV.setText("Uploaded 100%");
+
                             image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri)
                                 {
-                                    progressBarTV.setVisibility(View.VISIBLE);
-                                    progressBar.setVisibility(View.VISIBLE);
                                     imageURL= uri.toString();
 
                                     meals = new Meals(imageURL, dateToday, mealTypeSelected, mealDescription, calories, protein, fat, carbohydrates, cholesterol, fiber, sodium, potassium);
@@ -171,8 +176,7 @@ public class AddMeal extends AppCompatActivity implements AdapterView.OnItemSele
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    progressBar.setProgress(0);
-                                                    progressBarTV.setText("Uploaded 100%");
+
                                                     Toast.makeText(AddMeal.this, "Meal saved successfully", Toast.LENGTH_SHORT).show();
                                                     Intent openNewActivity = new Intent(AddMeal.this, HomeScreen.class);
                                                     startActivity(openNewActivity);
