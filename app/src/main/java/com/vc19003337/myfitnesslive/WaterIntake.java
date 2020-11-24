@@ -4,44 +4,37 @@ import java.util.Date;
 
 public class WaterIntake
 {
-    Date entryDate;
-    double waterAmount;
-    double totalWaterIntake;
+    String entryDate;
+    int totalWaterIntake;
 
-    public WaterIntake(Date entryDate, double waterAmount, double totalWaterIntake)
+    public WaterIntake()
+    {
+        //Empty constructor - IMPORTANT!!!
+    }
+
+    public WaterIntake(String entryDate, int totalWaterIntake)
     {
         this.entryDate = entryDate;
-        this.waterAmount = waterAmount;
         this.totalWaterIntake = totalWaterIntake;
     }
 
-    public Date getEntryDate()
+    public String getEntryDate()
     {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate)
+    public void setEntryDate(String entryDate)
     {
         this.entryDate = entryDate;
     }
 
-    public double getWaterAmount()
-    {
-        return waterAmount;
-    }
-
-    public void setWaterAmount(double waterAmount)
-    {
-        this.waterAmount = waterAmount;
-    }
-
-    public double getTotalWaterIntake()
+    public int getTotalWaterIntake()
     {
         return totalWaterIntake;
     }
 
-    public void setTotalWaterIntake(double totalWaterIntake)
+    public void setTotalWaterIntake(int totalWaterIntake)
     {
-        this.totalWaterIntake= totalWaterIntake;
+        this.totalWaterIntake = totalWaterIntake;
     }
 }
