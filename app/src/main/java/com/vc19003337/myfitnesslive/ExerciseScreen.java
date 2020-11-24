@@ -36,8 +36,7 @@ public class ExerciseScreen extends AppCompatActivity implements ExeciseInput.Ex
     ArrayAdapter adapter;
     Calendar calendar;
     String dateToday, exerciseType;
-    int totalCaloriesBurned = 0;
-    int caloriesBurned;
+    int totalCaloriesBurned, caloriesBurned;
     Exercise exercise;
     ListView exerciseActivitiesLV;
     TextView currentCaloriesBurnedDisplayTV;
@@ -60,6 +59,8 @@ public class ExerciseScreen extends AppCompatActivity implements ExeciseInput.Ex
         addNewActivityBTN = findViewById(R.id.btn_AddNewActivity);
         exerciseActivitiesLV = findViewById(R.id.lv_ExerciseActivities);
 
+        totalCaloriesBurned = 0;
+
         myRef.child("Exercise").addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -68,9 +69,9 @@ public class ExerciseScreen extends AppCompatActivity implements ExeciseInput.Ex
                 exercise = new Exercise();
                 exerciseActivitiesList = new ArrayList<String>();
 
-                for (DataSnapshot weightValues : snapshot.getChildren())
+                for (DataSnapshot exerciseValues : snapshot.getChildren())
                 {
-                    exercise  = weightValues.getValue(Exercise.class);
+                    exercise  = exerciseValues.getValue(Exercise.class);
                     exerciseActivitiesList.add(exercise.toString());
 
                     assert exercise != null;

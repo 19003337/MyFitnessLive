@@ -63,12 +63,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     Button camera, caloriesBurnedBTN, goalCaloriesBTN, caloriesConsumedBTN, saveTotalCaloriesBTN;
     TextView caloriesRemainingTV, latestMealTV, latestMealDescriptionTV;
     ImageView latestMealIV;
-    Integer calculatedCaloriesRemaining, calculatedCaloriesConsumed;
+    Integer calculatedCaloriesRemaining, calculatedCaloriesConsumed, calculatedCaloriesBurned;
     //Double calculatedCaloriesConsumed;
     int targetCalories, caloriesConsumed, caloriesBurned;
     Calories calories;
     Goals goals;
     Meals meals;
+    Exercise exercise;
     //UserProfile userProfile;
 
     @SuppressLint("SetTextI18n")
@@ -85,6 +86,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         dateToday = dateFormat.format(calendar.getTime());
 
         calculatedCaloriesConsumed = 0;
+        calculatedCaloriesBurned = 0;
+        caloriesBurned = 0;
+
         caloriesRemainingTV = findViewById(R.id.tv_CaloriesRemaining);
         goalCaloriesBTN = findViewById(R.id.btn_TargetCalories);
         caloriesConsumedBTN = findViewById(R.id.btn_CaloriesConsumed);
@@ -144,7 +148,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(HomeScreen.this, "Exercise feature coming soon", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(HomeScreen.this, ExerciseScreen.class);
+                startActivity(i);
             }
         });
 
@@ -165,8 +170,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             {
                 try
                 {
-                    //caloriesConsumed = Integer.parseInt(String.valueOf(calculatedCaloriesConsumed));
                     caloriesConsumed = calculatedCaloriesConsumed;
+                    caloriesBurned = calculatedCaloriesBurned;
                     calories = new Calories(dateToday, caloriesConsumed, targetCalories, caloriesBurned);
 
                     myRef.child("Calories").push().setValue(calories).addOnSuccessListener(new OnSuccessListener<Void>()
@@ -214,7 +219,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 }
 
                 targetCalories = Integer.parseInt(String.valueOf(goals.dailyCalorieIntake));
-                caloriesBurned = 0;
             }
 
             @Override
@@ -263,6 +267,39 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     latestMealTV.setText("No meals saved!");
                     latestMealDescriptionTV.setText("Press camera now!");
                     latestMealIV.setImageDrawable(getResources().getDrawable(R.drawable.nomeals));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                Toast.makeText(HomeScreen.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        myRef.child("Exercise").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for (DataSnapshot exerciseActivities : snapshot.getChildren())
+                {
+                    exercise = exerciseActivities.getValue(Exercise.class);
+                    assert exercise != null;
+                    if(exercise.entryDate.equals(dateToday))
+                    {
+                        //caloriesBurned += exercise.caloriesBurned;
+                        calculatedCaloriesBurned += exercise.caloriesBurned;
+                    }
+                }
+
+                if(exercise != null && exercise.entryDate.equals(dateToday))
+                {
+                    //caloriesBurnedBTN.setText(String.format(Locale.ENGLISH,"%.2f", calculatedCaloriesBurned) + " kcal");
+                    caloriesBurnedBTN.setText(calculatedCaloriesBurned.toString() + " kcal");
+                }
+                else {
+                    caloriesBurnedBTN.setText("0 kcal");
                 }
             }
 
