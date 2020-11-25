@@ -66,9 +66,15 @@ public class WaterIntakeScreen extends AppCompatActivity
 
                 if (waterIntake != null)
                 {
-                    currentWaterIntakeDisplayTV.setText(String.valueOf(waterIntake.getTotalWaterIntake()) + " ml");
+                    if(waterIntake.entryDate.equals(dateToday))
+                    {
+                        totalWaterIntake = waterIntake.getTotalWaterIntake();
+                        currentWaterIntakeDisplayTV.setText(String.valueOf(waterIntake.getTotalWaterIntake()) + " ml");
+                    }
                 }
                 else{
+                    totalWaterIntake = 0;
+                    currentWaterIntakeDisplayTV.setText("0 ml");
                     Toast.makeText(WaterIntakeScreen.this, "Please add your water intake for today", Toast.LENGTH_LONG).show();
                 }
             }

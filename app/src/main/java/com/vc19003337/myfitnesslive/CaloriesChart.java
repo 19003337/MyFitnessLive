@@ -48,6 +48,9 @@ public class CaloriesChart extends AppCompatActivity
         barChart.setPinchZoom(true);
         barChart.setTouchEnabled(true);
         barChart.setFitBars(true);
+        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.getAxisRight().setAxisMinimum(0);
+        //lineChart.getAxisLeft().setAxisMaximum(200);
         barChart.animateY(2000);
         barChart.getDescription().setText("Daily Calories Consumed Chart");
 

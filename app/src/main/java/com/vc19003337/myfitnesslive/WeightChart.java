@@ -57,6 +57,7 @@ public class WeightChart extends AppCompatActivity
         lineChart.setPinchZoom(true);
         lineChart.setTouchEnabled(true);
         lineChart.getAxisLeft().setAxisMinimum(0);
+        lineChart.getAxisRight().setAxisMinimum(0);
         //lineChart.getAxisLeft().setAxisMaximum(200);
         lineChart.animateY(2000);
         lineChart.getDescription().setText("Weight Progress Chart");

@@ -72,11 +72,11 @@ public class ExerciseScreen extends AppCompatActivity implements ExeciseInput.Ex
                 for (DataSnapshot exerciseValues : snapshot.getChildren())
                 {
                     exercise  = exerciseValues.getValue(Exercise.class);
-                    exerciseActivitiesList.add(exercise.toString());
 
                     assert exercise != null;
                     if(exercise.entryDate.equals(dateToday))
                     {
+                        exerciseActivitiesList.add(exercise.toString());
                         totalCaloriesBurned += exercise.caloriesBurned;
                     }
                 }
@@ -86,7 +86,6 @@ public class ExerciseScreen extends AppCompatActivity implements ExeciseInput.Ex
                 exerciseActivitiesLV.setAdapter(adapter);
 
                 currentCaloriesBurnedDisplayTV.setText(totalCaloriesBurned + " kcal");
-
             }
 
             @Override
